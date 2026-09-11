@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +9,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
             brand: {
-              cyan: '#00f0ff',
-              blue: '#0066ff',
-              purple: '#7f00ff',
-              dark: '#070a13',
-              slate: '#0f172a',
-              card: '#162032',
+              cyan: '#0284c7',
+              lightCyan: '#00f0ff',
+              blue: '#2563eb',
+              purple: '#7c3aed',
+              darkText: '#0f172a',
+              bodyText: '#334155',
+              cardBg: '#ffffff',
             }
           }
         }
@@ -36,115 +36,116 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #070a13;
-      color: #f1f5f9;
-      background-image: linear-gradient(to bottom, rgba(7, 10, 19, 0.88), rgba(7, 10, 19, 0.95)), 
+      background-color: #f8fafc;
+      color: #334155;
+      /* LIGHT OFFICE BACKGROUND OVERLAY */
+      background-image: linear-gradient(to bottom, rgba(248, 250, 252, 0.92), rgba(241, 245, 249, 0.96)), 
                         url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80');
       background-attachment: fixed;
       background-size: cover;
       background-position: center;
     }
-    .neon-border {
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.12), inset 0 0 15px rgba(0, 240, 255, 0.05);
-    }
-    .glass-card {
-      background: rgba(15, 23, 42, 0.82);
+    
+    .light-glass-card {
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
     }
-    .glass-card:hover {
-      border-color: rgba(0, 240, 255, 0.35);
+    
+    .light-glass-card:hover {
+      border-color: rgba(2, 132, 199, 0.4);
+      box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.12);
     }
-    .glass-nav {
-      background: rgba(7, 10, 19, 0.85);
+    
+    .light-nav {
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
+
     .chat-scrollbar::-webkit-scrollbar {
       width: 4px;
     }
     .chat-scrollbar::-webkit-scrollbar-thumb {
-      background: #1e293b;
+      background: #cbd5e1;
       border-radius: 4px;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
 
   <!-- TOP UTILITY BAR -->
-  <div class="bg-slate-950/90 border-b border-slate-800/80 text-xs py-2.5 px-4 sm:px-8 text-slate-400 flex justify-between items-center z-50 backdrop-blur-md">
+  <div class="bg-slate-900 text-xs py-2.5 px-4 sm:px-8 text-slate-300 flex justify-between items-center z-50 shadow-sm">
     <div class="flex items-center gap-4 sm:gap-6">
-      <a href="tel:+442079460912" class="hover:text-cyan-400 transition flex items-center gap-2">
-        <i class="fa-solid fa-phone text-cyan-400"></i> <span class="hidden xs:inline">+44 (0) 20 7946 0912</span>
+      <a href="tel:+442079460912" class="hover:text-cyan-400 transition flex items-center gap-2 font-medium">
+        <i class="fa-solid fa-phone text-cyan-400"></i> +44 (0) 20 7946 0912
       </a>
-      <a href="mailto:hub@podlogic.co.uk" class="hover:text-cyan-400 transition flex items-center gap-2">
-        <i class="fa-solid fa-envelope text-cyan-400"></i> <span class="hidden sm:inline">hub@podlogic.co.uk</span>
+      <a href="mailto:hub@podlogic.co.uk" class="hover:text-cyan-400 transition flex items-center gap-2 font-medium hidden sm:flex">
+        <i class="fa-solid fa-envelope text-cyan-400"></i> hub@podlogic.co.uk
       </a>
     </div>
     <div class="flex items-center gap-4">
-      <span class="text-slate-500 hidden md:inline">Bulawayo Delivery Center | Servicing UK, EU & US</span>
+      <span class="text-slate-400 hidden md:inline">Bulawayo Operations Hub | Servicing UK, EU & US</span>
       <!-- LINKEDIN SOCIAL ONLY -->
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 text-slate-300 transition flex items-center gap-1.5 font-semibold">
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 text-slate-200 transition flex items-center gap-1.5 font-semibold">
         <i class="fa-brands fa-linkedin text-base text-cyan-400"></i> LinkedIn
       </a>
     </div>
   </div>
 
   <!-- NAVIGATION HEADER -->
-  <header class="sticky top-0 z-40 glass-nav border-b border-slate-800/80">
+  <header class="sticky top-0 z-40 light-nav border-b border-slate-200/80 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- LOGO -->
       <a href="#" onclick="switchPage('home')" class="flex items-center gap-3 group">
-        <div class="relative w-11 h-11 flex items-center justify-center bg-gradient-to-tr from-purple-600 via-blue-600 to-cyan-400 rounded-xl p-[2px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition">
-          <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center relative overflow-hidden">
+        <div class="relative w-11 h-11 flex items-center justify-center bg-gradient-to-tr from-purple-600 via-blue-600 to-cyan-500 rounded-xl p-[2px] shadow-md group-hover:shadow-cyan-500/30 transition">
+          <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center relative overflow-hidden">
             <svg class="w-7 h-7 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <div class="absolute inset-0 bg-cyan-400/10 blur-sm"></div>
           </div>
         </div>
         <div class="flex flex-col">
-          <span class="text-2xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-100 to-cyan-400 bg-clip-text text-transparent">PODLOGIC</span>
-          <span class="text-[9px] uppercase tracking-widest text-cyan-400 font-semibold -mt-1">Back-Office Operations</span>
+          <span class="text-2xl font-extrabold tracking-wider text-slate-900">PODLOGIC</span>
+          <span class="text-[9px] uppercase tracking-widest text-sky-600 font-bold -mt-1">Back-Office Operations</span>
         </div>
       </a>
 
       <!-- DESKTOP NAVIGATION -->
-      <nav class="hidden md:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-full border border-slate-800">
-        <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-5 py-2 rounded-full text-sm font-medium transition text-cyan-400 bg-slate-800">Home</button>
-        <button onclick="switchPage('services')" id="nav-services" class="nav-btn px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition">Services</button>
-        <button onclick="switchPage('about')" id="nav-about" class="nav-btn px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition">About Us</button>
-        <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition">Contact</button>
+      <nav class="hidden md:flex items-center gap-1 bg-slate-100 p-1.5 rounded-full border border-slate-200">
+        <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition text-sky-700 bg-white shadow-sm">Home</button>
+        <button onclick="switchPage('services')" id="nav-services" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition">Services</button>
+        <button onclick="switchPage('about')" id="nav-about" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition">About Us</button>
+        <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition">Contact</button>
       </nav>
 
       <!-- CTA BUTTON -->
       <div class="hidden md:flex items-center gap-4">
-        <button onclick="switchPage('contact')" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-semibold rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/20">
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-md group-hover:bg-opacity-0">
-            Book Discovery Call <i class="fa-solid fa-arrow-right ml-2 text-cyan-400 group-hover:text-white"></i>
-          </span>
+        <button onclick="switchPage('contact')" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-sky-500/20 transition transform hover:-translate-y-0.5">
+          Book Discovery Call <i class="fa-solid fa-arrow-right ml-2"></i>
         </button>
       </div>
 
       <!-- MOBILE MENU BUTTON -->
-      <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none">
+      <button id="mobile-menu-btn" class="md:hidden text-slate-700 hover:text-slate-900 p-2 focus:outline-none">
         <i class="fa-solid fa-bars text-2xl"></i>
       </button>
     </div>
 
     <!-- MOBILE NAVIGATION DRAWER -->
-    <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2 backdrop-blur-xl">
-      <button onclick="switchPage('home')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-200 hover:bg-slate-800 font-medium">Home</button>
-      <button onclick="switchPage('services')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-200 hover:bg-slate-800 font-medium">Services</button>
-      <button onclick="switchPage('about')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-200 hover:bg-slate-800 font-medium">About Us</button>
-      <button onclick="switchPage('contact')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-200 hover:bg-slate-800 font-medium">Contact</button>
-      <div class="pt-4 border-t border-slate-800/80 space-y-3">
-        <a href="tel:+442079460912" class="block text-sm text-cyan-400"><i class="fa-solid fa-phone mr-2"></i> +44 (0) 20 7946 0912</a>
-        <a href="mailto:hub@podlogic.co.uk" class="block text-sm text-slate-300"><i class="fa-solid fa-envelope mr-2 text-cyan-400"></i> hub@podlogic.co.uk</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+      <button onclick="switchPage('home')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">Home</button>
+      <button onclick="switchPage('services')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">Services</button>
+      <button onclick="switchPage('about')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">About Us</button>
+      <button onclick="switchPage('contact')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">Contact</button>
+      <div class="pt-4 border-t border-slate-200 space-y-3">
+        <a href="tel:+442079460912" class="block text-sm text-sky-600 font-bold"><i class="fa-solid fa-phone mr-2"></i> +44 (0) 20 7946 0912</a>
+        <a href="mailto:hub@podlogic.co.uk" class="block text-sm text-slate-700 font-medium"><i class="fa-solid fa-envelope mr-2 text-sky-600"></i> hub@podlogic.co.uk</a>
       </div>
     </div>
   </header>
@@ -155,110 +156,108 @@
     <!-- ==================== PAGE 1: HOME ==================== -->
     <section id="page-home" class="page-content block">
       
-      <!-- HERO SECTION WITH OFFICE BACKDROP OVERLAY -->
+      <!-- HERO SECTION -->
       <div class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none"></div>
-        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div class="grid lg:grid-cols-12 gap-12 items-center">
             
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-cyan-400 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> BPO & Operations Support
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span> Bulawayo BPO & Operations Hub
               </div>
 
-              <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+              <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900">
                 Back-Office Administration Support That <br>
-                <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                <span class="bg-gradient-to-r from-sky-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Keeps Operations Moving
                 </span>
               </h1>
 
-              <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
                 Your front office cannot perform if the back office is overloaded. PodLogic supports documentation, CRM updates, record management, order processing, tenant and broader Real Estate management, claims admin, and daily operational tasks from Bulawayo so your internal team can focus on customers, growth, and decision-making.
               </p>
 
               <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                <button onclick="switchPage('contact')" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/25 transition transform hover:-translate-y-0.5">
+                <button onclick="switchPage('contact')" class="px-8 py-4 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-sky-500/25 transition transform hover:-translate-y-0.5">
                   Schedule Discovery Call <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
-                <button onclick="switchPage('services')" class="px-8 py-4 rounded-xl bg-slate-900/90 border border-slate-700 hover:border-slate-500 text-white font-semibold transition backdrop-blur-md">
+                <button onclick="switchPage('services')" class="px-8 py-4 rounded-xl bg-white border border-slate-300 hover:border-slate-400 text-slate-800 font-semibold text-sm transition shadow-sm">
                   Explore Solutions
                 </button>
               </div>
 
               <!-- BULAWAYO / ADVANTAGE STATS -->
-              <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-800/80">
+              <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200">
                 <div>
-                  <div class="text-xl sm:text-2xl font-extrabold text-cyan-400">UK / EU / US</div>
-                  <div class="text-[11px] text-slate-400 uppercase tracking-wider mt-1">Aligned Time Zones</div>
+                  <div class="text-xl sm:text-2xl font-extrabold text-sky-600">UK / EU / US</div>
+                  <div class="text-[11px] text-slate-500 uppercase font-semibold tracking-wider mt-1">Aligned Time Zones</div>
                 </div>
                 <div>
-                  <div class="text-xl sm:text-2xl font-extrabold text-white">Top-Tier</div>
-                  <div class="text-[11px] text-slate-400 uppercase tracking-wider mt-1">Graduate Talent</div>
+                  <div class="text-xl sm:text-2xl font-extrabold text-slate-900">Top-Tier</div>
+                  <div class="text-[11px] text-slate-500 uppercase font-semibold tracking-wider mt-1">Graduate Talent</div>
                 </div>
                 <div>
-                  <div class="text-xl sm:text-2xl font-extrabold text-purple-400">2-4 Weeks</div>
-                  <div class="text-[11px] text-slate-400 uppercase tracking-wider mt-1">Structured Onboarding</div>
+                  <div class="text-xl sm:text-2xl font-extrabold text-purple-600">2-4 Weeks</div>
+                  <div class="text-[11px] text-slate-500 uppercase font-semibold tracking-wider mt-1">Structured Onboarding</div>
                 </div>
               </div>
             </div>
 
-            <!-- DASHBOARD / OPERATIONS VISUAL -->
+            <!-- DASHBOARD VISUAL CARD -->
             <div class="lg:col-span-5 relative">
-              <div class="glass-card rounded-2xl p-6 relative overflow-hidden neon-border space-y-4">
-                <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+              <div class="light-glass-card rounded-2xl p-6 space-y-4">
+                <div class="flex justify-between items-center border-b border-slate-200 pb-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span class="text-xs font-mono text-emerald-400">BULAWAYO HUB: ACTIVE</span>
+                    <span class="text-xs font-mono font-bold text-emerald-600">BULAWAYO HUB: ACTIVE</span>
                   </div>
-                  <span class="text-xs text-slate-400 font-mono">24/7 SUPPORT MODEL</span>
+                  <span class="text-xs text-slate-500 font-mono font-medium">24/7 SUPPORT MODEL</span>
                 </div>
 
                 <div class="space-y-3">
-                  <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                  <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
                     <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                      <div class="w-9 h-9 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 font-bold">
                         <i class="fa-solid fa-file-invoice"></i>
                       </div>
                       <div>
-                        <div class="text-xs font-bold text-white">Documentation & CRM Updates</div>
-                        <div class="text-[11px] text-slate-400">Record management & data entry</div>
+                        <div class="text-xs font-bold text-slate-900">Documentation & CRM Updates</div>
+                        <div class="text-[11px] text-slate-500">Record management & data entry</div>
                       </div>
                     </div>
-                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded">VERIFIED</span>
+                    <span class="text-[10px] font-mono font-bold text-sky-700 bg-sky-50 px-2 py-1 rounded border border-sky-200">VERIFIED</span>
                   </div>
 
-                  <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                  <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
                     <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0">
+                      <div class="w-9 h-9 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 font-bold">
                         <i class="fa-solid fa-building-user"></i>
                       </div>
                       <div>
-                        <div class="text-xs font-bold text-white">Tenant & Real Estate Admin</div>
-                        <div class="text-[11px] text-slate-400">Broader portfolio management</div>
+                        <div class="text-xs font-bold text-slate-900">Tenant & Real Estate Admin</div>
+                        <div class="text-[11px] text-slate-500">Broader portfolio management</div>
                       </div>
                     </div>
-                    <span class="text-[10px] font-mono text-purple-400 bg-purple-500/10 px-2 py-1 rounded">STREAMLINED</span>
+                    <span class="text-[10px] font-mono font-bold text-purple-700 bg-purple-50 px-2 py-1 rounded border border-purple-200">STREAMLINED</span>
                   </div>
 
-                  <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800/80 flex items-center justify-between">
+                  <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
                     <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0">
+                      <div class="w-9 h-9 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 font-bold">
                         <i class="fa-solid fa-clipboard-check"></i>
                       </div>
                       <div>
-                        <div class="text-xs font-bold text-white">Claims Admin & Order Processing</div>
-                        <div class="text-[11px] text-slate-400">Accurate daily workflow execution</div>
+                        <div class="text-xs font-bold text-slate-900">Claims Admin & Order Processing</div>
+                        <div class="text-[11px] text-slate-500">Accurate daily workflow execution</div>
                       </div>
                     </div>
-                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">24/7 SLA</span>
+                    <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200">24/7 SLA</span>
                   </div>
                 </div>
 
-                <div class="bg-slate-950/90 p-3 rounded-lg border border-slate-800 text-xs text-slate-400 flex justify-between items-center">
+                <div class="bg-slate-900 p-3.5 rounded-xl text-xs text-slate-300 flex justify-between items-center">
                   <span>Enquiries: Mon - Fri</span>
-                  <a href="mailto:hub@podlogic.co.uk" class="text-cyan-400 hover:underline">hub@podlogic.co.uk</a>
+                  <a href="mailto:hub@podlogic.co.uk" class="text-sky-400 font-bold hover:underline">hub@podlogic.co.uk</a>
                 </div>
               </div>
             </div>
@@ -268,90 +267,90 @@
       </div>
 
       <!-- COMMERCIAL ADVANTAGE SECTION -->
-      <div class="py-16 bg-slate-950/70 border-t border-b border-slate-800/80 backdrop-blur-md">
+      <div class="py-16 bg-white/80 border-t border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center max-w-3xl mx-auto mb-12">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2 font-mono">Commercial Advantage</h2>
-            <p class="text-2xl sm:text-4xl font-extrabold text-white">Optimize Corporate Operations & Back Office</p>
-            <p class="text-slate-400 text-sm mt-3 leading-relaxed">Discover how PodLogic enhances your enterprise efficiency with professional back-office solutions. The time zone lines up, top tier graduates, the English is the right fit, and the cost of running a Bulawayo versus a UK-based team is a genuine commercial advantage.</p>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-sky-600 mb-2 font-mono">Commercial Advantage</h2>
+            <p class="text-2xl sm:text-4xl font-extrabold text-slate-900">Optimize Corporate Operations & Back Office</p>
+            <p class="text-slate-600 text-sm mt-3 leading-relaxed">Discover how PodLogic enhances your enterprise efficiency with professional back-office solutions. The time zone lines up, top tier graduates, the English is the right fit, and the cost of running a Bulawayo versus a UK-based team is a genuine commercial advantage.</p>
           </div>
 
           <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 rounded-2xl transition hover:-translate-y-1">
-              <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-xl flex items-center justify-center text-2xl mb-6 border border-cyan-500/20">
+            <div class="light-glass-card p-8 rounded-2xl transition hover:-translate-y-1">
+              <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-6 font-bold border border-sky-200">
                 <i class="fa-solid fa-sitemap"></i>
               </div>
-              <h3 class="text-xl font-bold text-white mb-3">Streamlined Back Office</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Streamline daily operations and internal processes, ensuring your business environment runs smoothly and efficiently every day.</p>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Streamlined Back Office</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Streamline daily operations and internal processes, ensuring your business environment runs smoothly and efficiently every day.</p>
             </div>
 
-            <div class="glass-card p-8 rounded-2xl transition hover:-translate-y-1">
-              <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-6 border border-purple-500/20">
+            <div class="light-glass-card p-8 rounded-2xl transition hover:-translate-y-1">
+              <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6 font-bold border border-purple-200">
                 <i class="fa-solid fa-chart-line"></i>
               </div>
-              <h3 class="text-xl font-bold text-white mb-3">Process Optimization</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Leverage graduate-level employees integrated into your operational frameworks, designed specifically to elevate productivity and reduce administrative friction.</p>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Process Optimization</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Leverage graduate-level employees integrated into your operational frameworks, designed specifically to elevate productivity and reduce administrative friction.</p>
             </div>
 
-            <div class="glass-card p-8 rounded-2xl transition hover:-translate-y-1">
-              <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6 border border-blue-500/20">
+            <div class="light-glass-card p-8 rounded-2xl transition hover:-translate-y-1">
+              <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6 font-bold border border-blue-200">
                 <i class="fa-solid fa-cubes"></i>
               </div>
-              <h3 class="text-xl font-bold text-white mb-3">Enterprise Solutions</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Implement scalable solutions tailored to meeting you at your point of need—whether at start-up, growth, scaling, or improving internal workflows.</p>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Enterprise Solutions</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Implement scalable solutions tailored to meeting you at your point of need—whether at start-up, growth, scaling, or improving internal workflows.</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- 6-STAGE ONBOARDING PROCESS -->
-      <div class="py-20 border-t border-slate-800/80">
+      <div class="py-20 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div class="max-w-3xl mb-12">
-            <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 font-mono">Seamless Integration</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">How We Get You Live</h2>
-            <p class="text-slate-300 mt-3 text-sm leading-relaxed">
+            <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">Seamless Integration</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">How We Get You Live</h2>
+            <p class="text-slate-600 mt-3 text-sm leading-relaxed">
               Outsourcing fails at the handover far more often than it fails in delivery. This is the six-stage process PodLogic runs before a new operation goes live, ensuring zero friction and complete clarity. Typical onboarding takes <strong>two to four weeks</strong>, depending on process complexity.
             </p>
           </div>
 
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyan-400">
-              <div class="text-xs font-mono text-cyan-400 mb-2 font-bold">STAGE 01</div>
-              <h4 class="text-lg font-bold text-white mb-2">Discovery</h4>
-              <p class="text-slate-400 text-xs leading-relaxed">Your operation, volumes, systems, and service expectations fully documented.</p>
+            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-sky-500">
+              <div class="text-xs font-mono text-sky-600 mb-2 font-bold">STAGE 01</div>
+              <h4 class="text-lg font-bold text-slate-900 mb-2">Discovery</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">Your operation, volumes, systems, and service expectations fully documented.</p>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-blue-500">
-              <div class="text-xs font-mono text-blue-400 mb-2 font-bold">STAGE 02</div>
-              <h4 class="text-lg font-bold text-white mb-2">Process Mapping</h4>
-              <p class="text-slate-400 text-xs leading-relaxed">A written process document that both sides review and agree is 100% correct.</p>
+            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-blue-600">
+              <div class="text-xs font-mono text-blue-600 mb-2 font-bold">STAGE 02</div>
+              <h4 class="text-lg font-bold text-slate-900 mb-2">Process Mapping</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">A written process document that both sides review and agree is 100% correct.</p>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-purple-500">
-              <div class="text-xs font-mono text-purple-400 mb-2 font-bold">STAGE 03</div>
-              <h4 class="text-lg font-bold text-white mb-2">Agent Training</h4>
-              <p class="text-slate-400 text-xs leading-relaxed">A dedicated team trained to master your product and quality standards before going live.</p>
+            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-purple-600">
+              <div class="text-xs font-mono text-purple-600 mb-2 font-bold">STAGE 03</div>
+              <h4 class="text-lg font-bold text-slate-900 mb-2">Agent Training</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">A dedicated team trained to master your product and quality standards before going live.</p>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-amber-400">
-              <div class="text-xs font-mono text-amber-400 mb-2 font-bold">STAGE 04</div>
-              <h4 class="text-lg font-bold text-white mb-2">Pilot Phase</h4>
-              <p class="text-slate-400 text-xs leading-relaxed">A tested process, specifically created so problems surface while volume is still low.</p>
+            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-amber-500">
+              <div class="text-xs font-mono text-amber-600 mb-2 font-bold">STAGE 04</div>
+              <h4 class="text-lg font-bold text-slate-900 mb-2">Pilot Phase</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">A tested process, specifically created so problems surface while volume is still low.</p>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-emerald-400">
-              <div class="text-xs font-mono text-emerald-400 mb-2 font-bold">STAGE 05</div>
-              <h4 class="text-lg font-bold text-white mb-2">Quality Monitoring</h4>
-              <p class="text-slate-400 text-xs leading-relaxed">Consistent operational output, actively verified and audited rather than assumed.</p>
+            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-emerald-600">
+              <div class="text-xs font-mono text-emerald-600 mb-2 font-bold">STAGE 05</div>
+              <h4 class="text-lg font-bold text-slate-900 mb-2">Quality Monitoring</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">Consistent operational output, actively verified and audited rather than assumed.</p>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl border-l-4 border-l-pink-500">
-              <div class="text-xs font-mono text-pink-400 mb-2 font-bold">STAGE 06</div>
-              <h4 class="text-lg font-bold text-white mb-2">Reporting & Optimisation</h4>
-              <p class="text-slate-400 text-xs leading-relaxed">Full visibility of your outsourced operation and a continuous route to improving it.</p>
+            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-pink-600">
+              <div class="text-xs font-mono text-pink-600 mb-2 font-bold">STAGE 06</div>
+              <h4 class="text-lg font-bold text-slate-900 mb-2">Reporting & Optimisation</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">Full visibility of your outsourced operation and a continuous route to improving it.</p>
             </div>
 
           </div>
@@ -366,91 +365,91 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 font-mono">BPO & Operations Capabilities</span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">PodLogic Core Services</h1>
-          <p class="text-slate-400 mt-4 text-base">We support high-volume corporate workflows from Bulawayo so your internal team can focus on customers, growth, and decision-making.</p>
+          <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">BPO & Operations Capabilities</span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">PodLogic Core Services</h1>
+          <p class="text-slate-600 mt-4 text-base">We support high-volume corporate workflows from Bulawayo so your internal team can focus on customers, growth, and decision-making.</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
           
           <!-- Service 1 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-cyan-400">
+          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-sky-500">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-cyan-400 font-mono text-sm font-semibold">SERVICE / 01</span>
-                <i class="fa-solid fa-folder-open text-2xl text-cyan-400"></i>
+                <span class="text-sky-600 font-mono text-sm font-bold">SERVICE / 01</span>
+                <i class="fa-solid fa-folder-open text-2xl text-sky-600"></i>
               </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Back-Office Administration Support</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Back-Office Administration Support</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Complete management of heavy administrative workloads. From documentation and records management to daily routine operational tasks.
               </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Accurate documentation and record updates</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> CRM maintenance and database cleansing</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Daily routine operational task execution</li>
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-600"></i> Accurate documentation and record updates</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-600"></i> CRM maintenance and database cleansing</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-600"></i> Daily routine operational task execution</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-cyan-400 font-semibold text-sm hover:underline self-start">Inquire about Admin Support &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-sky-600 font-bold text-sm hover:underline self-start">Inquire about Admin Support &rarr;</button>
           </div>
 
           <!-- Service 2 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-purple-500">
+          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-purple-600">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-purple-400 font-mono text-sm font-semibold">SERVICE / 02</span>
-                <i class="fa-solid fa-building text-2xl text-purple-400"></i>
+                <span class="text-purple-600 font-mono text-sm font-bold">SERVICE / 02</span>
+                <i class="fa-solid fa-building text-2xl text-purple-600"></i>
               </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Tenant & Real Estate Management Support</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Tenant & Real Estate Management Support</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Tailored administration for real estate agencies, property managers, and commercial landlords across the UK, EU, and US.
               </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Tenant intake, onboarding, and inquiry administration</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Lease record updates and compliance logging</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Maintenance ticket dispatch and tracking</li>
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600"></i> Tenant intake, onboarding, and inquiry administration</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600"></i> Lease record updates and compliance logging</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600"></i> Maintenance ticket dispatch and tracking</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-purple-400 font-semibold text-sm hover:underline self-start">Inquire about Real Estate Support &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-purple-600 font-bold text-sm hover:underline self-start">Inquire about Real Estate Support &rarr;</button>
           </div>
 
           <!-- Service 3 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-blue-500">
+          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-blue-600">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-blue-400 font-mono text-sm font-semibold">SERVICE / 03</span>
-                <i class="fa-solid fa-cart-flatbed text-2xl text-blue-400"></i>
+                <span class="text-blue-600 font-mono text-sm font-bold">SERVICE / 03</span>
+                <i class="fa-solid fa-cart-flatbed text-2xl text-blue-600"></i>
               </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Order Processing & Claims Admin</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Order Processing & Claims Admin</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Rapid and accurate processing of commercial orders, claims documentation, and transactional workflows.
               </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Order verification, processing, and system entry</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Insurance and service claims administration</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Exception handling and customer log tracking</li>
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Order verification, processing, and system entry</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Insurance and service claims administration</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Exception handling and customer log tracking</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-blue-400 font-semibold text-sm hover:underline self-start">Inquire about Claims & Orders &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-blue-600 font-bold text-sm hover:underline self-start">Inquire about Claims & Orders &rarr;</button>
           </div>
 
           <!-- Service 4 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-emerald-400">
+          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-emerald-600">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-emerald-400 font-mono text-sm font-semibold">SERVICE / 04</span>
-                <i class="fa-solid fa-gears text-2xl text-emerald-400"></i>
+                <span class="text-emerald-600 font-mono text-sm font-bold">SERVICE / 04</span>
+                <i class="fa-solid fa-gears text-2xl text-emerald-600"></i>
               </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Process Automation & Operations Consulting</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Process Automation & Operations Consulting</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Modernize corporate workflows with intelligent back-office automation tools and expert operational guidance.
               </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Intelligent workflow and process mapping</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Graduate-level employee operational integration</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Data management and decision-support analytics</li>
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Intelligent workflow and process mapping</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Graduate-level employee operational integration</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Data management and decision-support analytics</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-emerald-400 font-semibold text-sm hover:underline self-start">Inquire about Operations Consulting &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-emerald-600 font-bold text-sm hover:underline self-start">Inquire about Operations Consulting &rarr;</button>
           </div>
 
         </div>
@@ -463,55 +462,55 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="max-w-3xl mb-16">
-          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 font-mono">About PodLogic</span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">Our Values & Mission</h1>
-          <p class="text-cyan-400 text-xl font-semibold mt-3 italic">
+          <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">About PodLogic</span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">Our Values & Mission</h1>
+          <p class="text-sky-700 text-xl font-bold mt-3 italic">
             "Service defines us; empowers you."
           </p>
-          <p class="text-slate-300 mt-4 text-base leading-relaxed">
+          <p class="text-slate-600 mt-4 text-base leading-relaxed">
             PodLogic was built on the principle that front-office innovation requires uncompromised back-office reliability. Our mission is to empower businesses in the UK, EU & US by providing exceptional BPO solutions that improve efficiency, reduce operational cost, and support the delivery of an outstanding customer experience.
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div class="space-y-6">
-            <h2 class="text-2xl font-bold text-white">The Bulawayo Advantage</h2>
-            <p class="text-slate-300 leading-relaxed text-sm">
+            <h2 class="text-2xl font-bold text-slate-900">The Bulawayo Advantage</h2>
+            <p class="text-slate-600 leading-relaxed text-sm">
               Operating out of Bulawayo gives our enterprise clients a genuine commercial edge. We tap into a rich talent pool of university graduates possessing native-level English fluency, high digital competency, and strong analytical capabilities.
             </p>
-            <p class="text-slate-300 leading-relaxed text-sm">
+            <p class="text-slate-600 leading-relaxed text-sm">
               With time zone alignment matching the UK and EU, your back office functions seamlessly alongside your internal team during regular business hours—or 24/7 according to your agreed support model.
             </p>
-            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs font-mono text-cyan-400 flex items-center gap-3 backdrop-blur-md">
-              <i class="fa-solid fa-circle-info text-xl text-cyan-400"></i>
+            <div class="p-4 rounded-xl bg-sky-50 border border-sky-200 text-xs font-mono text-sky-800 flex items-center gap-3">
+              <i class="fa-solid fa-circle-info text-xl text-sky-600"></i>
               <span>Typical onboarding takes 2 to 4 weeks with full quality monitoring at every step.</span>
             </div>
           </div>
 
-          <div class="glass-card p-8 rounded-2xl border border-cyan-500/20 space-y-6">
-            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3">Why Enterprises Choose PodLogic</h3>
+          <div class="light-glass-card p-8 rounded-2xl border border-sky-200 space-y-6">
+            <h3 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">Why Enterprises Choose PodLogic</h3>
             
             <div class="flex gap-4">
-              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-lg shrink-0">1</div>
+              <div class="w-10 h-10 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-lg shrink-0">1</div>
               <div>
-                <h4 class="text-white font-semibold text-base">Verified Quality Output</h4>
-                <p class="text-slate-400 text-xs mt-1">We verify output consistency through rigorous monitoring rather than assuming success.</p>
+                <h4 class="text-slate-900 font-semibold text-base">Verified Quality Output</h4>
+                <p class="text-slate-600 text-xs mt-1">We verify output consistency through rigorous monitoring rather than assuming success.</p>
               </div>
             </div>
 
             <div class="flex gap-4">
-              <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-lg shrink-0">2</div>
+              <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg shrink-0">2</div>
               <div>
-                <h4 class="text-white font-semibold text-base">Frictionless Handover</h4>
-                <p class="text-slate-400 text-xs mt-1">Our structured 6-stage process eliminates handover failures before pilot launch.</p>
+                <h4 class="text-slate-900 font-semibold text-base">Frictionless Handover</h4>
+                <p class="text-slate-600 text-xs mt-1">Our structured 6-stage process eliminates handover failures before pilot launch.</p>
               </div>
             </div>
 
             <div class="flex gap-4">
-              <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-lg shrink-0">3</div>
+              <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg shrink-0">3</div>
               <div>
-                <h4 class="text-white font-semibold text-base">Cost & Talent Superiority</h4>
-                <p class="text-slate-400 text-xs mt-1">Top-tier graduates providing maximum operational leverage at a fraction of local cost.</p>
+                <h4 class="text-slate-900 font-semibold text-base">Cost & Talent Superiority</h4>
+                <p class="text-slate-600 text-xs mt-1">Top-tier graduates providing maximum operational leverage at a fraction of local cost.</p>
               </div>
             </div>
           </div>
@@ -525,62 +524,62 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 font-mono">Schedule Discovery Call</span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">Schedule Your Next Appointment Hassle-Free</h1>
-          <p class="text-slate-400 mt-4 text-sm">Our team is available to discuss your outsourcing requirements, answer questions about our services, and help you understand how we can support your business.</p>
+          <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">Schedule Discovery Call</span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">Schedule Your Next Appointment Hassle-Free</h1>
+          <p class="text-slate-600 mt-4 text-sm">Our team is available to discuss your outsourcing requirements, answer questions about our services, and help you understand how we can support your business.</p>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-12">
           
           <!-- CONTACT DETAILS CARD -->
           <div class="lg:col-span-5 space-y-6">
-            <div class="glass-card p-8 rounded-2xl border border-slate-800 space-y-8">
-              <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-4">Direct Communication</h3>
+            <div class="light-glass-card p-8 rounded-2xl border border-slate-200 space-y-8">
+              <h3 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-4">Direct Communication</h3>
               
               <!-- PHONE -->
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-xl flex items-center justify-center text-xl shrink-0 border border-cyan-500/20">
+                <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-xl shrink-0 border border-sky-200 font-bold">
                   <i class="fa-solid fa-phone"></i>
                 </div>
                 <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Phone Contact</div>
-                  <a href="tel:+442079460912" class="text-lg font-bold text-white hover:text-cyan-400 transition block mt-0.5">+44 (0) 20 7946 0912</a>
+                  <div class="text-xs text-slate-500 uppercase font-mono font-bold">Phone Contact</div>
+                  <a href="tel:+442079460912" class="text-lg font-bold text-slate-900 hover:text-sky-600 transition block mt-0.5">+44 (0) 20 7946 0912</a>
                   <div class="text-xs text-slate-500 mt-1">Enquiries Monday to Friday</div>
                 </div>
               </div>
 
               <!-- EMAIL -->
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-xl shrink-0 border border-purple-500/20">
+                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-xl shrink-0 border border-purple-200 font-bold">
                   <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Email Enquiries</div>
-                  <a href="mailto:hub@podlogic.co.uk" class="text-lg font-bold text-white hover:text-purple-400 transition block mt-0.5">hub@podlogic.co.uk</a>
+                  <div class="text-xs text-slate-500 uppercase font-mono font-bold">Email Enquiries</div>
+                  <a href="mailto:hub@podlogic.co.uk" class="text-lg font-bold text-slate-900 hover:text-purple-600 transition block mt-0.5">hub@podlogic.co.uk</a>
                   <div class="text-xs text-slate-500 mt-1">Client service delivery 24/7 by agreed support model</div>
                 </div>
               </div>
 
               <!-- LINKEDIN (EXCLUSIVE SOCIAL LINK) -->
               <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-xl shrink-0 border border-blue-500/20">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl shrink-0 border border-blue-200 font-bold">
                   <i class="fa-brands fa-linkedin"></i>
                 </div>
                 <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Official Network</div>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-white hover:text-cyan-400 transition block mt-0.5">PodLogic LinkedIn</a>
+                  <div class="text-xs text-slate-500 uppercase font-mono font-bold">Official Network</div>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-slate-900 hover:text-sky-600 transition block mt-0.5">PodLogic LinkedIn</a>
                   <div class="text-xs text-slate-500 mt-1">Follow our official updates and insights</div>
                 </div>
               </div>
 
               <!-- LOCATION HUB -->
-              <div class="flex items-start gap-4 pt-4 border-t border-slate-800">
-                <div class="w-12 h-12 bg-slate-800 text-slate-300 rounded-xl flex items-center justify-center text-xl shrink-0">
+              <div class="flex items-start gap-4 pt-4 border-t border-slate-200">
+                <div class="w-12 h-12 bg-slate-100 text-slate-700 rounded-xl flex items-center justify-center text-xl shrink-0 border border-slate-200">
                   <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Delivery Operations Hub</div>
-                  <p class="text-sm text-slate-200 mt-0.5">Bulawayo, Zimbabwe (Servicing UK, EU & US)</p>
+                  <div class="text-xs text-slate-500 uppercase font-mono font-bold">Delivery Operations Hub</div>
+                  <p class="text-sm font-semibold text-slate-800 mt-0.5">Bulawayo, Zimbabwe (Servicing UK, EU & US)</p>
                 </div>
               </div>
 
@@ -589,29 +588,29 @@
 
           <!-- FULLY FUNCTIONAL CONTACT FORM -->
           <div class="lg:col-span-7">
-            <div class="glass-card p-8 rounded-2xl border border-slate-800">
-              <h3 class="text-xl font-bold text-white mb-6">Book a Discovery Call</h3>
+            <div class="light-glass-card p-8 rounded-2xl border border-slate-200">
+              <h3 class="text-xl font-bold text-slate-900 mb-6">Book a Discovery Call</h3>
               
               <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
                 <div class="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label for="form-name" class="block text-xs text-slate-400 uppercase font-medium mb-1">Your Name *</label>
-                    <input type="text" id="form-name" required placeholder="Jane Smith" class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+                    <label for="form-name" class="block text-xs text-slate-600 uppercase font-bold mb-1">Your Name *</label>
+                    <input type="text" id="form-name" required placeholder="Jane Smith" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition shadow-sm">
                   </div>
                   <div>
-                    <label for="form-email" class="block text-xs text-slate-400 uppercase font-medium mb-1">Email Address *</label>
-                    <input type="email" id="form-email" required placeholder="jane@company.com" class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+                    <label for="form-email" class="block text-xs text-slate-600 uppercase font-bold mb-1">Email Address *</label>
+                    <input type="email" id="form-email" required placeholder="jane@company.com" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition shadow-sm">
                   </div>
                 </div>
 
                 <div class="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label for="form-phone" class="block text-xs text-slate-400 uppercase font-medium mb-1">Phone Number</label>
-                    <input type="tel" id="form-phone" placeholder="+44 20 0000 0000" class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+                    <label for="form-phone" class="block text-xs text-slate-600 uppercase font-bold mb-1">Phone Number</label>
+                    <input type="tel" id="form-phone" placeholder="+44 20 0000 0000" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition shadow-sm">
                   </div>
                   <div>
-                    <label for="form-service" class="block text-xs text-slate-400 uppercase font-medium mb-1">Service Area of Interest</label>
-                    <select id="form-service" class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+                    <label for="form-service" class="block text-xs text-slate-600 uppercase font-bold mb-1">Service Area of Interest</label>
+                    <select id="form-service" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition shadow-sm">
                       <option>Back-Office Administration</option>
                       <option>Tenant & Real Estate Admin</option>
                       <option>Claims Admin & Order Processing</option>
@@ -621,19 +620,19 @@
                 </div>
 
                 <div>
-                  <label for="form-message" class="block text-xs text-slate-400 uppercase font-medium mb-1">Operations & Volume Details *</label>
-                  <textarea id="form-message" rows="4" required placeholder="Briefly describe your team size, volumes, and requirements..." class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition"></textarea>
+                  <label for="form-message" class="block text-xs text-slate-600 uppercase font-bold mb-1">Operations & Volume Details *</label>
+                  <textarea id="form-message" rows="4" required placeholder="Briefly describe your team size, volumes, and requirements..." class="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 text-sm focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100 transition shadow-sm"></textarea>
                 </div>
 
-                <button type="submit" id="form-submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold transition shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
+                <button type="submit" id="form-submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold transition shadow-md shadow-sky-500/20 flex items-center justify-center gap-2 uppercase text-xs tracking-wider">
                   <span id="btn-text">Request Discovery Call</span>
                   <i id="btn-icon" class="fa-solid fa-paper-plane"></i>
                 </button>
               </form>
 
               <!-- SUCCESS MODAL/TOAST -->
-              <div id="form-toast" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm text-center">
-                <i class="fa-solid fa-circle-check text-emerald-400 mr-2 text-base"></i>
+              <div id="form-toast" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-sm text-center shadow-sm">
+                <i class="fa-solid fa-circle-check text-emerald-600 mr-2 text-base"></i>
                 <span id="toast-message">Inquiry submitted successfully! Our team will contact you within 24 hours.</span>
               </div>
             </div>
@@ -650,24 +649,24 @@
   <div class="fixed bottom-6 right-6 z-50">
     
     <!-- CHAT TOGGLE BUTTON -->
-    <button id="chatbot-toggle" onclick="toggleChatbot()" class="w-14 h-14 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 p-[2px] shadow-xl shadow-cyan-500/30 hover:scale-105 transition transform flex items-center justify-center group">
-      <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
-        <i class="fa-solid fa-robot text-2xl text-cyan-400 group-hover:text-white transition"></i>
+    <button id="chatbot-toggle" onclick="toggleChatbot()" class="w-14 h-14 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 p-[2px] shadow-xl hover:scale-105 transition transform flex items-center justify-center group">
+      <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+        <i class="fa-solid fa-robot text-2xl text-sky-600 group-hover:text-blue-700 transition"></i>
       </div>
-      <span class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-slate-950 animate-pulse"></span>
+      <span class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white animate-pulse"></span>
     </button>
 
     <!-- CHAT WINDOW -->
-    <div id="chatbot-window" class="hidden absolute bottom-18 right-0 w-[90vw] sm:w-[380px] h-[520px] bg-slate-950/95 border border-cyan-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden neon-border backdrop-blur-xl">
+    <div id="chatbot-window" class="hidden absolute bottom-18 right-0 w-[90vw] sm:w-[380px] h-[520px] bg-white border border-slate-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
       
       <!-- HEADER -->
-      <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex justify-between items-center">
+      <div class="bg-slate-900 px-4 py-3 text-white flex justify-between items-center">
         <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/40">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center border border-sky-400/40">
             <i class="fa-solid fa-bot text-base"></i>
           </div>
           <div>
-            <h4 class="text-sm font-bold text-white leading-none">PodBot AI Assistant</h4>
+            <h4 class="text-sm font-bold leading-none">PodBot AI Assistant</h4>
             <span class="text-[10px] text-emerald-400 font-mono">Online • BPO & Operations FAQ</span>
           </div>
         </div>
@@ -677,30 +676,30 @@
       </div>
 
       <!-- MESSAGES CONTAINER -->
-      <div id="chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs chat-scrollbar">
+      <div id="chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs chat-scrollbar bg-slate-50">
         
         <!-- BOT GREETING -->
         <div class="flex items-start gap-2.5">
-          <div class="w-6 h-6 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5 text-xs">
+          <div class="w-6 h-6 rounded bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">
             <i class="fa-solid fa-robot"></i>
           </div>
-          <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed">
+          <div class="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none text-slate-700 max-w-[85%] leading-relaxed shadow-sm">
             Welcome to PodLogic! I am PodBot AI. How can I help you today with our back-office support services? Select a question or type below.
           </div>
         </div>
 
         <!-- QUICK FAQ BUTTONS -->
         <div id="quick-faqs" class="pl-8 space-y-1.5 pt-1">
-          <button onclick="sendFAQ('What services does PodLogic offer?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
+          <button onclick="sendFAQ('What services does PodLogic offer?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-white hover:bg-sky-50 text-sky-700 border border-slate-200 text-[11px] font-semibold transition shadow-sm">
             • What services does PodLogic offer?
           </button>
-          <button onclick="sendFAQ('How long does onboarding take?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
+          <button onclick="sendFAQ('How long does onboarding take?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-white hover:bg-sky-50 text-sky-700 border border-slate-200 text-[11px] font-semibold transition shadow-sm">
             • How long does onboarding take?
           </button>
-          <button onclick="sendFAQ('Why choose the Bulawayo hub?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
+          <button onclick="sendFAQ('Why choose the Bulawayo hub?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-white hover:bg-sky-50 text-sky-700 border border-slate-200 text-[11px] font-semibold transition shadow-sm">
             • Why choose the Bulawayo hub?
           </button>
-          <button onclick="sendFAQ('How do I contact sales or support?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
+          <button onclick="sendFAQ('How do I contact sales or support?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-white hover:bg-sky-50 text-sky-700 border border-slate-200 text-[11px] font-semibold transition shadow-sm">
             • How do I contact sales or support?
           </button>
         </div>
@@ -708,9 +707,9 @@
       </div>
 
       <!-- INPUT FORM -->
-      <form onsubmit="handleChatSubmit(event)" class="p-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2">
-        <input type="text" id="chat-input" placeholder="Type your FAQ question..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-cyan-400">
-        <button type="submit" class="w-8 h-8 rounded-xl bg-cyan-500 text-slate-950 flex items-center justify-center font-bold hover:bg-cyan-400 transition shrink-0">
+      <form onsubmit="handleChatSubmit(event)" class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+        <input type="text" id="chat-input" placeholder="Type your FAQ question..." class="flex-grow bg-slate-100 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-sky-600">
+        <button type="submit" class="w-8 h-8 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold hover:bg-sky-500 transition shrink-0">
           <i class="fa-solid fa-paper-plane text-xs"></i>
         </button>
       </form>
@@ -719,7 +718,7 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-950/90 border-t border-slate-800/80 pt-12 pb-8 text-slate-400 text-sm backdrop-blur-md">
+  <footer class="bg-slate-900 border-t border-slate-800 pt-12 pb-8 text-slate-400 text-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         
@@ -769,14 +768,14 @@
         <div>
           <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Connect</h4>
           <p class="text-xs text-slate-400 mb-3">Follow PodLogic on our official channel:</p>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-cyan-400 hover:border-cyan-400 transition">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-400 hover:border-cyan-400 transition">
             <i class="fa-brands fa-linkedin text-base"></i> LinkedIn Official
           </a>
         </div>
 
       </div>
 
-      <div class="border-t border-slate-900 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+      <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
         <p>&copy; 2026 PodLogic. All rights reserved.</p>
         <div class="flex gap-4 mt-2 sm:mt-0">
           <a href="#" class="hover:text-slate-400">Privacy Policy</a>
@@ -800,14 +799,14 @@
 
       const navBtns = document.querySelectorAll('.nav-btn');
       navBtns.forEach(btn => {
-        btn.classList.remove('text-cyan-400', 'bg-slate-800');
-        btn.classList.add('text-slate-300');
+        btn.classList.remove('text-sky-700', 'bg-white', 'shadow-sm');
+        btn.classList.add('text-slate-600');
       });
 
       const activeBtn = document.getElementById(`nav-${pageId}`);
       if (activeBtn) {
-        activeBtn.classList.add('text-cyan-400', 'bg-slate-800');
-        activeBtn.classList.remove('text-slate-300');
+        activeBtn.classList.add('text-sky-700', 'bg-white', 'shadow-sm');
+        activeBtn.classList.remove('text-slate-600');
       }
 
       document.getElementById('mobile-menu').classList.add('hidden');
@@ -906,17 +905,17 @@
       if (sender === 'user') {
         messageDiv.className = 'flex items-start justify-end gap-2';
         messageDiv.innerHTML = `
-          <div class="bg-cyan-600/30 border border-cyan-500/40 text-cyan-100 p-2.5 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed">
+          <div class="bg-sky-600 text-white p-2.5 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed shadow-sm">
             ${text}
           </div>
         `;
       } else {
         messageDiv.className = 'flex items-start gap-2.5';
         messageDiv.innerHTML = `
-          <div class="w-6 h-6 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5 text-xs">
+          <div class="w-6 h-6 rounded bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">
             <i class="fa-solid fa-robot"></i>
           </div>
-          <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed">
+          <div class="bg-white border border-slate-200 p-2.5 rounded-2xl rounded-tl-none text-slate-700 max-w-[85%] leading-relaxed shadow-sm">
             ${text}
           </div>
         `;
