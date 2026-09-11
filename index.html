@@ -1,852 +1,828 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PodLogic | Autonomous Mobility & Smart Logistics Networks</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              cyan: '#00f0ff',
-              blue: '#0066ff',
-              purple: '#7f00ff',
-              dark: '#070a11',
-              card: '#0f172a',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PodLogic | Autonomous Pod Transport & Smart Infrastructure</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pod: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            dark: '#0a0f1d',
+                            card: '#111827',
+                            accent: '#00f0ff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Font: Plus Jakarta Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #070a11;
-      color: #f1f5f9;
-    }
-    .neon-border {
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
-    }
-    .neon-glow {
-      filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.6));
-    }
-    .glass-card {
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .glass-card:hover {
-      border-color: rgba(0, 240, 255, 0.4);
-    }
-    .chat-scrollbar::-webkit-scrollbar {
-      width: 4px;
-    }
-    .chat-scrollbar::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 4px;
-    }
-  </style>
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .glow-accent {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+        }
+        .glow-text {
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0f1d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+<body class="bg-pod-dark text-slate-100 antialiased selection:bg-pod-500 selection:text-white">
 
-  <!-- TOP UTILITY HEADER -->
-  <div class="bg-slate-950 border-b border-slate-800/80 text-xs py-2 px-4 sm:px-8 text-slate-400 flex justify-between items-center z-50">
-    <div class="flex items-center gap-6">
-      <a href="tel:+442079460912" class="hover:text-cyan-400 transition flex items-center gap-2">
-        <i class="fa-solid fa-phone text-cyan-400"></i> +44 (0) 20 7946 0912
-      </a>
-      <a href="mailto:info@podlogic.io" class="hover:text-cyan-400 transition flex items-center gap-2 hidden sm:flex">
-        <i class="fa-solid fa-envelope text-cyan-400"></i> info@podlogic.io
-      </a>
-    </div>
-    <div class="flex items-center gap-4">
-      <span class="text-slate-500 hidden md:inline">Connect with us:</span>
-      <!-- ONLY LINKEDIN AS REQUESTED -->
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 text-slate-300 transition flex items-center gap-1.5 font-medium">
-        <i class="fa-brands fa-linkedin text-base text-cyan-400"></i> LinkedIn
-      </a>
-    </div>
-  </div>
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 rounded-xl p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center relative overflow-hidden">
+                            <!-- Hexagon SVG Logo Mark -->
+                            <svg class="w-7 h-7 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black tracking-wider text-white font-mono">POD<span class="text-cyan-400">LOGIC</span></span>
+                        <span class="text-[10px] text-cyan-400 tracking-widest uppercase -mt-1 font-semibold">Autonomous Mobility</span>
+                    </div>
+                </a>
 
-  <!-- NAVIGATION BAR -->
-  <header class="sticky top-0 z-40 bg-brand-dark/90 backdrop-blur-md border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <!-- LOGO (Custom Rendered matching provided PodLogic Emblem) -->
-      <a href="#" onclick="switchPage('home')" class="flex items-center gap-3 group">
-        <div class="relative w-11 h-11 flex items-center justify-center bg-gradient-to-tr from-purple-600 via-blue-600 to-cyan-400 rounded-xl p-[2px] shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition">
-          <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center relative overflow-hidden">
-            <!-- Icon graphics -->
-            <svg class="w-7 h-7 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="absolute inset-0 bg-cyan-400/10 blur-sm"></div>
-          </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-slate-300 hover:text-cyan-400 text-sm font-medium transition-colors">Home</a>
+                    <a href="#services" class="text-slate-300 hover:text-cyan-400 text-sm font-medium transition-colors">Services</a>
+                    <a href="#about" class="text-slate-300 hover:text-cyan-400 text-sm font-medium transition-colors">About Us</a>
+                    <a href="#contact" class="text-slate-300 hover:text-cyan-400 text-sm font-medium transition-colors">Contact</a>
+                    
+                    <!-- Direct Phone Quick Link -->
+                    <a href="tel:+442079460912" class="flex items-center text-xs text-slate-300 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700 hover:border-cyan-500 transition-all">
+                        <i class="fa-solid fa-phone text-cyan-400 mr-2"></i>
+                        +44 (0) 20 7946 0912
+                    </a>
+
+                    <a href="#contact" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-cyan-500/25 transition-all">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="flex flex-col">
-          <span class="text-2xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-100 to-cyan-400 bg-clip-text text-transparent">PODLOGIC</span>
-          <span class="text-[9px] uppercase tracking-widest text-cyan-400 font-semibold -mt-1">Autonomous Infrastructure</span>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="mobile-link block text-slate-300 hover:text-cyan-400 py-2 font-medium">Home</a>
+            <a href="#services" class="mobile-link block text-slate-300 hover:text-cyan-400 py-2 font-medium">Services</a>
+            <a href="#about" class="mobile-link block text-slate-300 hover:text-cyan-400 py-2 font-medium">About Us</a>
+            <a href="#contact" class="mobile-link block text-slate-300 hover:text-cyan-400 py-2 font-medium">Contact</a>
+            <div class="pt-2 border-t border-slate-800 flex flex-col gap-2">
+                <a href="tel:+442079460912" class="text-cyan-400 text-sm flex items-center">
+                    <i class="fa-solid fa-phone mr-2"></i> +44 (0) 20 7946 0912
+                </a>
+                <a href="mailto:info@podlogic.tech" class="text-slate-400 text-sm flex items-center">
+                    <i class="fa-solid fa-envelope mr-2"></i> info@podlogic.tech
+                </a>
+            </div>
         </div>
-      </a>
+    </nav>
 
-      <!-- DESKTOP NAV -->
-      <nav class="hidden md:flex items-center gap-1 bg-slate-900/80 p-1.5 rounded-full border border-slate-800">
-        <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-5 py-2 rounded-full text-sm font-medium transition text-cyan-400 bg-slate-800">Home</button>
-        <button onclick="switchPage('services')" id="nav-services" class="nav-btn px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition">Services</button>
-        <button onclick="switchPage('about')" id="nav-about" class="nav-btn px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition">About</button>
-        <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-5 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition">Contact</button>
-      </nav>
-
-      <!-- CTA BUTTON -->
-      <div class="hidden md:flex items-center gap-4">
-        <button onclick="switchPage('contact')" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-semibold rounded-lg group bg-gradient-to-br from-cyan-500 to-purple-600 group-hover:from-cyan-500 group-hover:to-purple-600 hover:text-white text-white shadow-lg shadow-cyan-500/20">
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-md group-hover:bg-opacity-0">
-            Request Demo <i class="fa-solid fa-arrow-right ml-2 text-cyan-400 group-hover:text-white"></i>
-          </span>
-        </button>
-      </div>
-
-      <!-- MOBILE MENU BUTTON -->
-      <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2">
-        <i class="fa-solid fa-bars text-2xl"></i>
-      </button>
-    </div>
-
-    <!-- MOBILE MENU DRAWER -->
-    <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
-      <button onclick="switchPage('home')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800">Home</button>
-      <button onclick="switchPage('services')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800">Services</button>
-      <button onclick="switchPage('about')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800">About</button>
-      <button onclick="switchPage('contact')" class="block w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800">Contact</button>
-      <div class="pt-4 border-t border-slate-800 space-y-2">
-        <a href="tel:+442079460912" class="block text-sm text-cyan-400"><i class="fa-solid fa-phone mr-2"></i> +44 (0) 20 7946 0912</a>
-        <a href="mailto:info@podlogic.io" class="block text-sm text-slate-300"><i class="fa-solid fa-envelope mr-2 text-cyan-400"></i> info@podlogic.io</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- MAIN CONTENT CONTAINER -->
-  <main class="flex-grow">
-
-    <!-- ==================== PAGE 1: HOME ==================== -->
-    <section id="page-home" class="page-content block">
-      
-      <!-- HERO SECTION -->
-      <div class="relative overflow-hidden pt-12 pb-24 lg:pt-20 lg:pb-32">
-        <!-- Glow accents -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-purple-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- SECTION 1: HOME (HERO) -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        <!-- Ambient Glowing Background Grid -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div class="grid lg:grid-cols-12 gap-12 items-center">
-            
-            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-cyan-500/30 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Next-Gen Urban Transit Logic
-              </div>
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-cyan-500/30 px-3.5 py-1.5 rounded-full text-xs font-medium text-cyan-300 backdrop-blur-md">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span>Next-Generation Urban Pod Transit & Ecosystems</span>
+                    </div>
 
-              <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-                Intelligent Logistics & <br>
-                <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                  Autonomous Pod Networks
-                </span>
-              </h1>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Intelligent Autonomous <br class="hidden sm:block"/>
+                        <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent glow-text">
+                            Pod Transport & Logistics
+                        </span>
+                    </h1>
 
-              <p class="text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                PodLogic powers smart city transport ecosystems. We orchestrate autonomous pod fleets, dynamically routing micro-mobility and freight hubs with sub-millisecond AI precision.
-              </p>
+                    <p class="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        PodLogic builds next-generation dynamic routing, automated transit pods, and integrated city infrastructure. Cool each pod rack, optimize dynamic urban routing, and unify city transit.
+                    </p>
 
-              <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                <button onclick="switchPage('services')" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/25 transition">
-                  Explore Services <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-                <button onclick="switchPage('contact')" class="px-8 py-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-white font-semibold transition">
-                  Contact Fleet Ops
-                </button>
-              </div>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#services" class="w-full sm:w-auto text-center bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold px-8 py-4 rounded-xl shadow-xl shadow-cyan-500/20 hover:scale-105 transition-all">
+                            Explore Solutions <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto text-center border border-slate-700 bg-slate-900/50 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold px-8 py-4 rounded-xl transition-all">
+                            Schedule Technical Demo
+                        </a>
+                    </div>
 
-              <!-- METRICS BANNER -->
-              <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-800/80">
-                <div>
-                  <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">99.99%</div>
-                  <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Uptime SLA</div>
+                    <!-- Trust Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-cyan-400 font-mono">99.9%</div>
+                            <div class="text-xs text-slate-400 mt-1">Autonomous Uptime</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-cyan-400 font-mono">45%</div>
+                            <div class="text-xs text-slate-400 mt-1">Energy Reduction</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-cyan-400 font-mono">10M+</div>
+                            <div class="text-xs text-slate-400 mt-1">Autonomous Miles</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <div class="text-2xl sm:text-3xl font-extrabold text-white">50M+</div>
-                  <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Autonomous Miles</div>
+
+                <!-- Right Graphic Showcase Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-2xl p-1 bg-gradient-to-b from-cyan-500/40 via-blue-500/20 to-slate-800 shadow-2xl glow-accent">
+                        <div class="bg-slate-900/90 rounded-2xl p-6 overflow-hidden relative">
+                            <!-- Network Pod Simulation Dashboard Preview -->
+                            <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                </div>
+                                <span class="text-xs font-mono text-cyan-400">PODLOGIC OS v4.8 — LIVE</span>
+                            </div>
+
+                            <div class="py-6 space-y-4">
+                                <div class="glass-panel p-4 rounded-xl border border-cyan-500/30 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                                            <i class="fa-solid fa-truck-fast"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-semibold text-white">Autonomous Fleet Alpha</div>
+                                            <div class="text-xs text-slate-400">London Tech Corridor Route</div>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 text-[10px] font-mono bg-emerald-500/20 text-emerald-400 rounded-full border border-emerald-500/30">ACTIVE</span>
+                                </div>
+
+                                <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                            <i class="fa-solid fa-temperature-arrow-down"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-semibold text-white">Rack Thermal Optimization</div>
+                                            <div class="text-xs text-slate-400">Dynamic Density Cooling</div>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 text-[10px] font-mono bg-cyan-500/20 text-cyan-400 rounded-full border border-cyan-500/30">OPTIMAL</span>
+                                </div>
+
+                                <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                                            <i class="fa-solid fa-network-wired"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-semibold text-white">V2X Infrastructure Node</div>
+                                            <div class="text-xs text-slate-400">Latency: 1.2ms</div>
+                                        </div>
+                                    </div>
+                                    <span class="px-2.5 py-1 text-[10px] font-mono bg-indigo-500/20 text-indigo-400 rounded-full border border-indigo-500/30">CONNECTED</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Pods En Route: <strong class="text-white">1,420</strong></span>
+                                <span>Network Efficiency: <strong class="text-cyan-400">98.4%</strong></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <div class="text-2xl sm:text-3xl font-extrabold text-purple-400">&lt;2ms</div>
-                  <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Edge Latency</div>
-                </div>
-              </div>
+
             </div>
-
-            <!-- SMART CITY GRAPHIC / VISUAL PREVIEW -->
-            <div class="lg:col-span-5 relative">
-              <div class="glass-card rounded-2xl p-6 relative overflow-hidden neon-border">
-                <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
-                  <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span class="text-xs font-mono text-emerald-400">LIVE GRID: LONDON HUB</span>
-                  </div>
-                  <span class="text-xs text-slate-400 font-mono">NODES: 1,420 ACTIVE</span>
-                </div>
-
-                <!-- Simulation Visual -->
-                <div class="relative h-64 bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex items-center justify-center">
-                  <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
-                  
-                  <!-- Autonomous Nodes Graphics -->
-                  <div class="relative w-full h-full p-4 flex flex-col justify-between">
-                    <div class="flex justify-between items-center text-xs font-mono text-cyan-400 bg-slate-900/90 p-2.5 rounded-lg border border-cyan-500/30">
-                      <span><i class="fa-solid fa-microchip"></i> AI Dispatcher: Active</span>
-                      <span class="text-emerald-400 font-bold">OPTIMAL</span>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3 my-auto">
-                      <div class="bg-slate-900/70 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[10px] text-slate-400 uppercase">Pod Fleet Velocity</div>
-                        <div class="text-lg font-bold text-white">48 km/h <span class="text-xs text-emerald-400">avg</span></div>
-                      </div>
-                      <div class="bg-slate-900/70 p-3 rounded-lg border border-slate-800">
-                        <div class="text-[10px] text-slate-400 uppercase">Energy Efficiency</div>
-                        <div class="text-lg font-bold text-cyan-400">94.8%</div>
-                      </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-slate-400 font-mono bg-slate-900/90 p-2 rounded border border-slate-800">
-                      <span>POD-8842 Dynamic Reroute</span>
-                      <span class="text-cyan-400"><i class="fa-solid fa-arrows-split-up-and-left"></i> Executed</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
-                  <span>Connected via PodLogic Edge Network</span>
-                  <a href="#" onclick="switchPage('services')" class="text-cyan-400 hover:underline">Learn more &rarr;</a>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
-      </div>
+    </section>
 
-      <!-- FEATURES OVERVIEW -->
-      <div class="py-16 bg-slate-950/60 border-t border-slate-800/60">
+    <!-- SECTION 2: SERVICES -->
+    <section id="services" class="py-20 bg-slate-900/60 relative border-t border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center max-w-3xl mx-auto mb-12">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2">Core Technology</h2>
-            <p class="text-3xl font-extrabold text-white">Engineered for Next-Gen Urban Mobility</p>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 rounded-2xl transition hover:-translate-y-1">
-              <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-xl flex items-center justify-center text-2xl mb-6 border border-cyan-500/20">
-                <i class="fa-solid fa-diagram-project"></i>
-              </div>
-              <h3 class="text-xl font-bold text-white mb-3">Autonomous Fleet Dispatch</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Centralized mesh network control that intelligently schedules and routes autonomous passenger and cargo pods.</p>
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400">Our Offerings</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Intelligent Mobility & Infrastructure Services</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    PodLogic provides turnkey solutions connecting autonomous transport pods, smart city power grids, data center cooling, and real-time fleet orchestration.
+                </p>
             </div>
 
-            <div class="glass-card p-8 rounded-2xl transition hover:-translate-y-1">
-              <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-6 border border-purple-500/20">
-                <i class="fa-solid fa-city"></i>
-              </div>
-              <h3 class="text-xl font-bold text-white mb-3">Smart City Integration</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Seamless synchronization with municipal traffic signals, elevated transit tracks, and last-mile hubs.</p>
-            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Autonomous Pod Fleet Integration</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Seamlessly deploy dynamic passenger and cargo pods. Our AI dynamically schedules routes, manages urban density, and maintains zero-collision standards.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Real-time fleet telemetry</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Dynamic passenger dispatch</li>
+                    </ul>
+                </div>
 
-            <div class="glass-card p-8 rounded-2xl transition hover:-translate-y-1">
-              <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6 border border-blue-500/20">
-                <i class="fa-solid fa-chart-line"></i>
-              </div>
-              <h3 class="text-xl font-bold text-white mb-3">Predictive AI Analytics</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Real-time dynamic graph neural networks forecast traffic bottlenecks before congestion happens.</p>
+                <!-- Service 2 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-blue-500/20 to-indigo-500/20 text-blue-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-blue-500 group-hover:text-slate-950 transition-all">
+                        <i class="fa-solid fa-snowflake"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Thermal & Rack Density Cooling</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Cool each individual rack at the exact capacity it needs without rebuilding entire facilities. Designed for high-density pod server hubs and EV charging hubs.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-blue-400 mr-2"></i> Targeted targeted cooling</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-blue-400 mr-2"></i> Modular infrastructure scaling</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 text-indigo-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-indigo-500 group-hover:text-slate-950 transition-all">
+                        <i class="fa-solid fa-city"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Smart Infrastructure & V2X Connectivity</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Connect transit corridors, bridges, and raised access networks to a unified city grid. Enables vehicle-to-everything communication for micro-second response times.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Dedicated pod elevated lanes</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Automated grid load balancing</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-cyan-500/20 to-teal-500/20 text-teal-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-teal-500 group-hover:text-slate-950 transition-all">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">PodLogic Operating System</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Our cloud and edge software platform manages autonomous routing, power distribution, energy regeneration, and real-time pod diagnostics.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-teal-400 mr-2"></i> Edge computing analytics</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-teal-400 mr-2"></i> Automated safety overrides</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-sky-500/20 to-blue-600/20 text-sky-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-sky-500 group-hover:text-slate-950 transition-all">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Automated Power & Charging Hubs</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Intelligent rapid-charging pod stations that interface directly with municipal power grids, ensuring maximum battery life and zero downtime.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-sky-400 mr-2"></i> Ultra-fast inductive charging</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-sky-400 mr-2"></i> Smart grid integration</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-emerald-500/20 to-cyan-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all">
+                        <i class="fa-solid fa-handshake font-bold"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Consulting & System Architecture</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        From municipal feasibility studies to enterprise campus deployment, our engineers design custom pod mobility networks built for longevity.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> City scale simulations</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Regulatory compliance design</li>
+                    </ul>
+                </div>
+
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- ==================== PAGE 2: SERVICES ==================== -->
-    <section id="page-services" class="page-content hidden py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">End-to-End Solutions</span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">PodLogic Operational Services</h1>
-          <p class="text-slate-400 mt-4 text-base">We provide turnkey software, IoT edge hardware, and spatial orchestration for autonomous pod systems globally.</p>
+    <!-- SECTION 3: ABOUT US -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400">About PodLogic</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                        Pioneering the Next Era of Connected Urban & Enterprise Mobility
+                    </h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        At <strong class="text-white">PodLogic</strong>, we believe the cities and enterprise hubs of tomorrow require smart, adaptable, and efficient transit infrastructure. Standard transit systems and outdated cooling architectures cannot handle the density demands of modern urban developments.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed">
+                        Our platform merges dynamic autonomous pod routing with high-density thermal management. Whether optimizing individual server racks or deploying hundreds of autonomous electric transit pods across river bridges and elevated smart corridors, PodLogic provides complete operational harmony.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 pt-4">
+                        <div class="border border-slate-800 p-4 rounded-xl bg-slate-900/40">
+                            <i class="fa-solid fa-leaf text-cyan-400 text-xl mb-2"></i>
+                            <h4 class="text-white font-semibold mb-1">Zero Emissions</h4>
+                            <p class="text-slate-400 text-xs">Fully electrified pod architecture powered by smart energy grids.</p>
+                        </div>
+                        <div class="border border-slate-800 p-4 rounded-xl bg-slate-900/40">
+                            <i class="fa-solid fa-shield-halved text-cyan-400 text-xl mb-2"></i>
+                            <h4 class="text-white font-semibold mb-1">Mission-Critical Safety</h4>
+                            <p class="text-slate-400 text-xs">Redundant sensor arrays and AI fail-safe collision avoidance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Tech Stack Grid -->
+                <div class="glass-panel p-8 rounded-3xl relative overflow-hidden border border-cyan-500/20">
+                    <div class="text-center mb-8">
+                        <div class="inline-block p-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 mb-4">
+                            <!-- Hexagon Logo -->
+                            <svg class="w-12 h-12 text-cyan-400 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white font-mono">PODLOGIC CORE</h4>
+                        <p class="text-xs text-cyan-400 tracking-wider font-mono">INTELLIGENT NETWORK ARCHITECTURE</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-microchip text-cyan-400"></i>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Dynamic Pod Telemetry</div>
+                                    <div class="text-xs text-slate-500">Autonomous route calculation</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-fan text-cyan-400"></i>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Targeted Capacity Cooling</div>
+                                    <div class="text-xs text-slate-500">Individual rack density optimization</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-brands fa-linkedin text-cyan-400"></i>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Corporate Enterprise Access</div>
+                                    <div class="text-xs text-slate-500">LinkedIn verified network integration</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          
-          <!-- Service 1 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-cyan-400">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-cyan-400 font-mono text-sm font-semibold">SERVICE / 01</span>
-                <i class="fa-solid fa-car-side text-2xl text-cyan-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Pod Fleet Orchestration Engine</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Our core SaaS platform manages pod allocation, multi-node routing, energy optimization, and dynamic passenger pickup matching. Built to handle millions of dynamic variables in real-time.
-              </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Real-time multi-agent pathfinding</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Automated battery charging & station dock management</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Zero-latency failover safety protocols</li>
-              </ul>
-            </div>
-            <button onclick="switchPage('contact')" class="text-cyan-400 font-semibold text-sm hover:underline self-start">Inquire about Orchestration &rarr;</button>
-          </div>
-
-          <!-- Service 2 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-purple-500">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-purple-400 font-mono text-sm font-semibold">SERVICE / 02</span>
-                <i class="fa-solid fa-cubes text-2xl text-purple-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Smart City Hub Infrastructure</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Turnkey hardware and IoT bridge integration for dedicated pod lanes, elevated sky-tracks, underground pod conduits, and automated urban transfer stations.
-              </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Edge IoT gateways for V2X (Vehicle-to-Everything)</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Automated passenger boarding gates</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Solar-integrated energy management</li>
-              </ul>
-            </div>
-            <button onclick="switchPage('contact')" class="text-purple-400 font-semibold text-sm hover:underline self-start">Inquire about Infrastructure &rarr;</button>
-          </div>
-
-          <!-- Service 3 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-blue-500">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-blue-400 font-mono text-sm font-semibold">SERVICE / 03</span>
-                <i class="fa-solid fa-truck-fast text-2xl text-blue-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Micro-Freight Pod Delivery</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Specialized logistics algorithms for autonomous goods transport pods. Solve last-mile challenges for ecommerce, medical supplies, and urban distribution hubs.
-              </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Automated locker-pod interface integration</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> High-density cargo load balancing</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Cold-chain telemetry monitoring</li>
-              </ul>
-            </div>
-            <button onclick="switchPage('contact')" class="text-blue-400 font-semibold text-sm hover:underline self-start">Inquire about Freight Logic &rarr;</button>
-          </div>
-
-          <!-- Service 4 -->
-          <div class="glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-emerald-400">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-emerald-400 font-mono text-sm font-semibold">SERVICE / 04</span>
-                <i class="fa-solid fa-chart-pie text-2xl text-emerald-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-white mb-3">Spatial Analytics & Digital Twin</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Simulate urban transport flow prior to deployment. Create interactive 3D digital twins of cities to optimize pod line placement and station density.
-              </p>
-              <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Predictive spatial heatmaps</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Regulatory compliance reporting tools</li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Real-time telemetry dashboard API</li>
-              </ul>
-            </div>
-            <button onclick="switchPage('contact')" class="text-emerald-400 font-semibold text-sm hover:underline self-start">Inquire about Spatial AI &rarr;</button>
-          </div>
-
-        </div>
-
-      </div>
     </section>
 
-    <!-- ==================== PAGE 3: ABOUT ==================== -->
-    <section id="page-about" class="page-content hidden py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="max-w-3xl mb-16">
-          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">About PodLogic</span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">Revolutionizing Spatial Transit & Logistics</h1>
-          <p class="text-slate-300 mt-4 text-lg leading-relaxed">
-            Founded with the vision to eliminate urban congestion and transport inefficiency, PodLogic builds the intelligent software nerve-center powering the next era of autonomous pod networks.
-          </p>
-        </div>
-
-        <!-- Vision Grid -->
-        <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div class="space-y-6">
-            <h2 class="text-2xl font-bold text-white">Why Pod Systems?</h2>
-            <p class="text-slate-300 leading-relaxed text-sm">
-              Traditional urban transit systems—buses, subways, and personal automobiles—are constrained by fixed timetables and roadway bottlenecks. PodLogic introduces dynamic point-to-point transit where autonomous pods move continuously on demand.
-            </p>
-            <p class="text-slate-300 leading-relaxed text-sm">
-              By combining AI route optimization, V2I communication networks, and modular pod designs, we enable cities and enterprise logistics parks to move people and goods with zero carbon emissions and zero delay.
-            </p>
-            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400 flex items-center gap-3">
-              <i class="fa-solid fa-lightbulb text-xl text-yellow-400"></i>
-              <span>Headquartered in London, supporting autonomous pilot projects globally across Europe, North America, and Asia.</span>
+    <!-- SECTION 4: CONTACT -->
+    <section id="contact" class="py-20 bg-slate-900/80 border-t border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400">Get In Touch</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Connect with PodLogic Engineering</h3>
+                <p class="text-slate-400">
+                    Ready to transform your municipal transit corridor or high-density pod server infrastructure? Contact our team directly.
+                </p>
             </div>
-          </div>
 
-          <div class="glass-card p-8 rounded-2xl relative border border-cyan-500/20">
-            <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-800 pb-3">Our Core Principles</h3>
-            <div class="space-y-6">
-              <div class="flex gap-4">
-                <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-lg shrink-0">1</div>
-                <div>
-                  <h4 class="text-white font-semibold text-base">Efficiency First</h4>
-                  <p class="text-slate-400 text-xs mt-1">Eliminate empty pod travel miles with predictive algorithmic dispatching.</p>
-                </div>
-              </div>
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Details Box -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-6">
+                        <h4 class="text-xl font-bold text-white mb-6">Contact Information</h4>
 
-              <div class="flex gap-4">
-                <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-lg shrink-0">2</div>
-                <div>
-                  <h4 class="text-white font-semibold text-base">Zero Emissions Target</h4>
-                  <p class="text-slate-400 text-xs mt-1">100% electric network optimization with automated grid load balancing.</p>
-                </div>
-              </div>
+                        <!-- Phone Number -->
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Phone Support</div>
+                                <a href="tel:+442079460912" class="text-lg font-semibold text-white hover:text-cyan-400 transition-colors">
+                                    +44 (0) 20 7946 0912
+                                </a>
+                                <p class="text-xs text-slate-500 mt-0.5">Mon - Fri: 8:00 AM - 6:00 PM GMT</p>
+                            </div>
+                        </div>
 
-              <div class="flex gap-4">
-                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-lg shrink-0">3</div>
-                <div>
-                  <h4 class="text-white font-semibold text-base">Uncompromising Safety</h4>
-                  <p class="text-slate-400 text-xs mt-1">Hardware redundancy and multi-layered cyber-physical security.</p>
+                        <!-- Email Address -->
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Direct Email</div>
+                                <a href="mailto:info@podlogic.tech" class="text-lg font-semibold text-white hover:text-cyan-400 transition-colors">
+                                    info@podlogic.tech
+                                </a>
+                                <p class="text-xs text-slate-500 mt-0.5">General inquiries & business proposals</p>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Headquarters</div>
+                                <div class="text-base font-semibold text-white">PodLogic Innovation Center</div>
+                                <p class="text-xs text-slate-400">30 St Mary Axe, London EC3A 8EP, United Kingdom</p>
+                            </div>
+                        </div>
+
+                        <!-- Social (LINKEDIN ONLY) -->
+                        <div class="pt-6 border-t border-slate-800">
+                            <div class="text-xs text-slate-400 mb-3 font-medium">Connect on Professional Network:</div>
+                            <a href="https://www.linkedin.com/company/podlogic" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-3 bg-[#0A66C2] hover:bg-[#084e96] text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-lg">
+                                <i class="fa-brands fa-linkedin text-lg"></i>
+                                <span>Follow PodLogic on LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-6">
+                        <h4 class="text-xl font-bold text-white mb-2">Send Us a Message</h4>
+                        <p class="text-slate-400 text-sm mb-6">Fill in the parameters below and our engineering team will respond within 24 hours.</p>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
+                                <input type="text" required placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Work Email *</label>
+                                <input type="email" required placeholder="john@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Phone Number</label>
+                                <input type="tel" placeholder="+44 20 1234 5678" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Primary Interest</label>
+                                <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors">
+                                    <option>Autonomous Pod Transit Systems</option>
+                                    <option>Rack Thermal & Dynamic Cooling</option>
+                                    <option>V2X Smart Infrastructure</option>
+                                    <option>General Partner Inquiry</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Project Message *</label>
+                            <textarea rows="4" required placeholder="Describe your deployment requirements..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all text-sm tracking-wider uppercase">
+                            Submit Engineering Inquiry <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+
+                        <div id="form-alert" class="hidden p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-sm text-center">
+                            <i class="fa-solid fa-circle-check mr-2"></i> Message sent successfully! Our team will get back to you shortly.
+                        </div>
+                    </form>
+                </div>
+
             </div>
-          </div>
         </div>
-
-      </div>
     </section>
 
-    <!-- ==================== PAGE 4: CONTACT ==================== -->
-    <section id="page-contact" class="page-content hidden py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Get in Touch</span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-2">Connect with PodLogic</h1>
-          <p class="text-slate-400 mt-4 text-sm">Have questions about deploying PodLogic in your city or enterprise hub? Contact our technical team today.</p>
-        </div>
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-900">
+                
+                <!-- Col 1: Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center text-slate-950 font-bold">
+                            <svg class="w-5 h-5 text-slate-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-black text-white font-mono">POD<span class="text-cyan-400">LOGIC</span></span>
+                    </div>
+                    <p class="text-xs leading-relaxed text-slate-500">
+                        The unified platform optimizing autonomous pod mobility, rack capacity cooling, and smart urban transit grids.
+                    </p>
+                </div>
 
-        <div class="grid lg:grid-cols-12 gap-12">
-          
-          <!-- CONTACT DETAILS CARD -->
-          <div class="lg:col-span-5 space-y-6">
-            <div class="glass-card p-8 rounded-2xl border border-slate-800 space-y-8">
-              <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-4">Direct Channels</h3>
-              
-              <!-- PHONE -->
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-xl flex items-center justify-center text-xl shrink-0 border border-cyan-500/20">
-                  <i class="fa-solid fa-phone"></i>
-                </div>
+                <!-- Col 2: Navigation -->
                 <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Phone Number</div>
-                  <a href="tel:+442079460912" class="text-lg font-bold text-white hover:text-cyan-400 transition block mt-0.5">+44 (0) 20 7946 0912</a>
-                  <div class="text-xs text-slate-500 mt-1">Mon - Fri: 8:00 - 18:00 GMT</div>
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#home" class="hover:text-cyan-400 transition-colors">Home</a></li>
+                        <li><a href="#services" class="hover:text-cyan-400 transition-colors">Services</a></li>
+                        <li><a href="#about" class="hover:text-cyan-400 transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a></li>
+                    </ul>
                 </div>
-              </div>
 
-              <!-- EMAIL -->
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-xl shrink-0 border border-purple-500/20">
-                  <i class="fa-solid fa-envelope"></i>
-                </div>
+                <!-- Col 3: Direct Contact Details -->
                 <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Email Address</div>
-                  <a href="mailto:info@podlogic.io" class="text-lg font-bold text-white hover:text-purple-400 transition block mt-0.5">info@podlogic.io</a>
-                  <div class="text-xs text-slate-500 mt-1">24/7 Fleet & Technical Support</div>
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Contact Info</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-phone text-cyan-400 w-5"></i>
+                            <a href="tel:+442079460912" class="hover:text-cyan-400 transition-colors">+44 (0) 20 7946 0912</a>
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <i class="fa-solid fa-envelope text-cyan-400 w-5"></i>
+                            <a href="mailto:info@podlogic.tech" class="hover:text-cyan-400 transition-colors">info@podlogic.tech</a>
+                        </li>
+                        <li class="flex items-center text-slate-400">
+                            <i class="fa-solid fa-location-dot text-cyan-400 w-5"></i>
+                            <span>London, United Kingdom</span>
+                        </li>
+                    </ul>
                 </div>
-              </div>
 
-              <!-- LINKEDIN (EXCLUSIVE SOCIAL) -->
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-xl shrink-0 border border-blue-500/20">
-                  <i class="fa-brands fa-linkedin"></i>
-                </div>
+                <!-- Col 4: Social Links (LinkedIn ONLY) -->
                 <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Official LinkedIn</div>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-white hover:text-cyan-400 transition block mt-0.5">PodLogic Network</a>
-                  <div class="text-xs text-slate-500 mt-1">Follow our official news & pilot releases</div>
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Official Channels</h5>
+                    <p class="text-xs text-slate-500 mb-3">Connect with us exclusively on LinkedIn for official corporate updates:</p>
+                    <a href="https://www.linkedin.com/company/podlogic" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-400 px-4 py-2 rounded-lg text-xs font-medium transition-all">
+                        <i class="fa-brands fa-linkedin text-base"></i>
+                        <span>LinkedIn Official Page</span>
+                    </a>
                 </div>
-              </div>
-
-              <!-- LOCATION -->
-              <div class="flex items-start gap-4 pt-4 border-t border-slate-800">
-                <div class="w-12 h-12 bg-slate-800 text-slate-300 rounded-xl flex items-center justify-center text-xl shrink-0">
-                  <i class="fa-solid fa-location-dot"></i>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 uppercase font-mono">Global Headquarters</div>
-                  <p class="text-sm text-slate-200 mt-0.5">100 Bishopsgate, London EC2N 4AG, United Kingdom</p>
-                </div>
-              </div>
 
             </div>
-          </div>
 
-          <!-- FORM -->
-          <div class="lg:col-span-7">
-            <div class="glass-card p-8 rounded-2xl border border-slate-800">
-              <h3 class="text-xl font-bold text-white mb-6">Send an Inquiry</h3>
-              
-              <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                <div class="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label class="block text-xs text-slate-400 uppercase font-medium mb-1">Your Name</label>
-                    <input type="text" required placeholder="John Doe" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
-                  </div>
-                  <div>
-                    <label class="block text-xs text-slate-400 uppercase font-medium mb-1">Email Address</label>
-                    <input type="email" required placeholder="john@company.com" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
-                  </div>
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-600 gap-4">
+                <div>&copy; 2026 PodLogic Technologies Ltd. All rights reserved.</div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-400">Terms of Service</a>
+                    <a href="#" class="hover:text-slate-400">Security Architecture</a>
                 </div>
+            </div>
+        </div>
+    </footer>
 
-                <div class="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label class="block text-xs text-slate-400 uppercase font-medium mb-1">Phone Number</label>
-                    <input type="tel" placeholder="+1 (555) 000-0000" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
-                  </div>
-                  <div>
-                    <label class="block text-xs text-slate-400 uppercase font-medium mb-1">Subject</label>
-                    <select class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
-                      <option>Smart City Deployment</option>
-                      <option>Pod Fleet Orchestration</option>
-                      <option>Investor Inquiry</option>
-                      <option>General Technical Question</option>
-                    </select>
-                  </div>
+    <!-- AI BOT FAQ WIDGET BUTTON -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Floating Chat Button -->
+        <button id="chat-toggle-btn" class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-110 text-white rounded-full flex items-center justify-center shadow-2xl shadow-cyan-500/50 transition-all focus:outline-none relative group">
+            <i class="fa-solid fa-robot text-2xl group-hover:rotate-12 transition-transform"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-slate-950"></span>
+        </button>
+
+        <!-- AI FAQ Chat Window -->
+        <div id="chat-window" class="hidden absolute bottom-18 right-0 w-80 sm:w-96 glass-panel border border-cyan-500/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[480px]">
+            
+            <!-- Chat Header -->
+            <div class="bg-slate-900 p-4 border-b border-slate-800 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                        <i class="fa-solid fa-robot text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-white">PodLogic Assistant AI</div>
+                        <div class="text-[10px] text-emerald-400 flex items-center">
+                            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-1.5 animate-pulse"></span> FAQ Assistant Active
+                        </div>
+                    </div>
                 </div>
-
-                <div>
-                  <label class="block text-xs text-slate-400 uppercase font-medium mb-1">Message</label>
-                  <textarea rows="4" required placeholder="Tell us about your project requirements..." class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition"></textarea>
-                </div>
-
-                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold transition shadow-lg shadow-cyan-500/20">
-                  Transmit Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                <button id="chat-close-btn" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
-              </form>
-
-              <div id="form-toast" class="hidden mt-4 p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm text-center">
-                <i class="fa-solid fa-circle-check mr-2"></i> Message sent successfully! Our team will contact you within 24 hours.
-              </div>
             </div>
-          </div>
 
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ==================== AI BOT FAQ CHATBOT WIDGET ==================== -->
-  <div class="fixed bottom-6 right-6 z-50">
-    
-    <!-- CHAT TOGGLE BUTTON -->
-    <button id="chatbot-toggle" onclick="toggleChatbot()" class="w-14 h-14 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 p-[2px] shadow-xl shadow-cyan-500/30 hover:scale-105 transition transform flex items-center justify-center group">
-      <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
-        <i class="fa-solid fa-robot text-2xl text-cyan-400 group-hover:text-white transition"></i>
-      </div>
-      <span class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-slate-950 animate-pulse"></span>
-    </button>
-
-    <!-- CHAT CONTAINER WINDOW -->
-    <div id="chatbot-window" class="hidden absolute bottom-18 right-0 w-[90vw] sm:w-[380px] h-[520px] bg-slate-950 border border-cyan-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden neon-border">
-      
-      <!-- CHAT HEADER -->
-      <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/40">
-            <i class="fa-solid fa-bot text-base"></i>
-          </div>
-          <div>
-            <h4 class="text-sm font-bold text-white leading-none">PodBot AI Assistant</h4>
-            <span class="text-[10px] text-emerald-400 font-mono">Online • FAQs & Support</span>
-          </div>
-        </div>
-        <button onclick="toggleChatbot()" class="text-slate-400 hover:text-white p-1">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
-      </div>
-
-      <!-- CHAT MESSAGES BODY -->
-      <div id="chat-messages" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs chat-scrollbar">
-        
-        <!-- INITIAL BOT GREETING -->
-        <div class="flex items-start gap-2.5">
-          <div class="w-6 h-6 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5 text-xs">
-            <i class="fa-solid fa-robot"></i>
-          </div>
-          <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed">
-            Welcome to PodLogic! I am PodBot AI. How can I help you today? Choose a question below or type your inquiry.
-          </div>
-        </div>
-
-        <!-- QUICK FAQ PRESET BUTTONS -->
-        <div id="quick-faqs" class="pl-8 space-y-1.5 pt-1">
-          <button onclick="sendFAQ('What is PodLogic?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
-            • What is PodLogic?
-          </button>
-          <button onclick="sendFAQ('What services do you provide?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
-            • What services do you provide?
-          </button>
-          <button onclick="sendFAQ('How do I contact sales or support?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
-            • How do I contact sales or support?
-          </button>
-          <button onclick="sendFAQ('Where are your headquarters located?')" class="block w-full text-left px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] transition">
-            • Where are your headquarters located?
-          </button>
-        </div>
-
-      </div>
-
-      <!-- CHAT INPUT -->
-      <form onsubmit="handleChatSubmit(event)" class="p-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
-        <input type="text" id="chat-input" placeholder="Type your FAQ question..." class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-cyan-400">
-        <button type="submit" class="w-8 h-8 rounded-xl bg-cyan-500 text-slate-950 flex items-center justify-center font-bold hover:bg-cyan-400 transition shrink-0">
-          <i class="fa-solid fa-paper-plane text-xs"></i>
-        </button>
-      </form>
-
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="bg-slate-950 border-t border-slate-800/80 pt-12 pb-8 text-slate-400 text-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-        
-        <!-- BRAND -->
-        <div class="space-y-4 md:col-span-1">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-400 p-[1px]">
-              <div class="w-full h-full bg-slate-950 rounded-lg flex items-center justify-center">
-                <i class="fa-solid fa-cube text-cyan-400 text-sm"></i>
-              </div>
+            <!-- Chat Messages Log -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
+                <!-- Initial bot welcome message -->
+                <div class="flex items-start space-x-2">
+                    <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[10px] shrink-0 mt-1">
+                        <i class="fa-solid fa-bot"></i>
+                    </div>
+                    <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none max-w-[85%] border border-slate-700">
+                        Hello! I am the <strong>PodLogic AI Bot</strong>. How can I assist you with our autonomous transport pods, rack cooling, or contact information?
+                    </div>
+                </div>
             </div>
-            <span class="text-xl font-extrabold text-white tracking-wider">PODLOGIC</span>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            The spatial intelligence platform orchestrating autonomous pods, micro-freight networks, and smart city infrastructure.
-          </p>
-        </div>
 
-        <!-- NAVIGATION LINKS -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Navigation</h4>
-          <ul class="space-y-2 text-xs">
-            <li><a href="#" onclick="switchPage('home')" class="hover:text-cyan-400 transition">Home</a></li>
-            <li><a href="#" onclick="switchPage('services')" class="hover:text-cyan-400 transition">Services</a></li>
-            <li><a href="#" onclick="switchPage('about')" class="hover:text-cyan-400 transition">About Us</a></li>
-            <li><a href="#" onclick="switchPage('contact')" class="hover:text-cyan-400 transition">Contact</a></li>
-          </ul>
-        </div>
+            <!-- Quick Answer Chips -->
+            <div class="px-3 py-2 bg-slate-950 border-t border-slate-800 flex gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none text-[10px]">
+                <button onclick="askBot('What is PodLogic?')" class="bg-slate-800 hover:bg-cyan-500/20 hover:text-cyan-300 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">What is PodLogic?</button>
+                <button onclick="askBot('What services do you offer?')" class="bg-slate-800 hover:bg-cyan-500/20 hover:text-cyan-300 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">Services</button>
+                <button onclick="askBot('What is your phone number & email?')" class="bg-slate-800 hover:bg-cyan-500/20 hover:text-cyan-300 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">Phone & Email</button>
+            </div>
 
-        <!-- DIRECT CONTACT DETAILS -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Contact Info</h4>
-          <ul class="space-y-2 text-xs">
-            <li class="flex items-center gap-2">
-              <i class="fa-solid fa-phone text-cyan-400"></i>
-              <a href="tel:+442079460912" class="hover:text-white transition">+44 (0) 20 7946 0912</a>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="fa-solid fa-envelope text-cyan-400"></i>
-              <a href="mailto:info@podlogic.io" class="hover:text-white transition">info@podlogic.io</a>
-            </li>
-            <li class="text-slate-500 pt-1">London EC2N 4AG, United Kingdom</li>
-          </ul>
-        </div>
+            <!-- Chat Input Area -->
+            <form id="chat-form" class="p-3 bg-slate-900 border-t border-slate-800 flex gap-2">
+                <input id="chat-input" type="text" placeholder="Ask a question..." class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400">
+                <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-3 py-2 rounded-xl text-xs font-bold">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
 
-        <!-- SOCIAL (ONLY LINKEDIN AS SPECIFIED) -->
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Connect</h4>
-          <p class="text-xs text-slate-400 mb-3">Follow PodLogic on our sole official network:</p>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-cyan-400 hover:border-cyan-400 transition">
-            <i class="fa-brands fa-linkedin text-base"></i> LinkedIn Official
-          </a>
         </div>
-
-      </div>
-
-      <div class="border-t border-slate-900 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
-        <p>&copy; 2026 PodLogic Technologies Inc. All rights reserved.</p>
-        <div class="flex gap-4 mt-2 sm:mt-0">
-          <a href="#" class="hover:text-slate-400">Privacy Policy</a>
-          <a href="#" class="hover:text-slate-400">Terms of Service</a>
-          <a href="#" class="hover:text-slate-400">Security</a>
-        </div>
-      </div>
     </div>
-  </footer>
 
-  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
-  <script>
-    // PAGE SWITCHING ROUTER
-    function switchPage(pageId) {
-      // Hide all pages
-      const pages = document.querySelectorAll('.page-content');
-      pages.forEach(p => p.classList.add('hidden'));
+    <!-- JAVASCRIPT CONTROLLERS -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-      // Show requested page
-      const targetPage = document.getElementById(`page-${pageId}`);
-      if (targetPage) {
-        targetPage.classList.remove('hidden');
-      }
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-      // Update Nav active styles
-      const navBtns = document.querySelectorAll('.nav-btn');
-      navBtns.forEach(btn => {
-        btn.classList.remove('text-cyan-400', 'bg-slate-800');
-        btn.classList.add('text-slate-300');
-      });
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
-      const activeBtn = document.getElementById(`nav-${pageId}`);
-      if (activeBtn) {
-        activeBtn.classList.add('text-cyan-400', 'bg-slate-800');
-        activeBtn.classList.remove('text-slate-300');
-      }
+        // Contact Form Submission Handler
+        const contactForm = document.getElementById('contact-form');
+        const formAlert = document.getElementById('form-alert');
 
-      // Close mobile drawer if open
-      document.getElementById('mobile-menu').classList.add('hidden');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formAlert.classList.remove('hidden');
+            contactForm.reset();
+            setTimeout(() => {
+                formAlert.classList.add('hidden');
+            }, 5000);
+        });
 
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+        // AI Bot FAQ Logic
+        const chatToggleBtn = document.getElementById('chat-toggle-btn');
+        const chatCloseBtn = document.getElementById('chat-close-btn');
+        const chatWindow = document.getElementById('chat-window');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
 
-    // MOBILE MENU TOGGLE
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
+        // Toggle Chat window display
+        chatToggleBtn.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+        });
 
-    // CONTACT FORM SUBMISSION DEMO
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const toast = document.getElementById('form-toast');
-      toast.classList.remove('hidden');
-      document.getElementById('contact-form').reset();
-      setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 5000);
-    }
+        chatCloseBtn.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+        });
 
-    // AI FAQ CHATBOT LOGIC
-    function toggleChatbot() {
-      const chatWin = document.getElementById('chatbot-window');
-      chatWin.classList.toggle('hidden');
-    }
+        // Answer Repository (Knowledge Base)
+        const faqKnowledge = [
+            {
+                keywords: ['what is podlogic', 'about podlogic', 'who are you', 'company'],
+                response: "PodLogic is an autonomous mobility & infrastructure platform. We optimize dynamic transit pods, V2X connected smart grids, and individual rack cooling without rebuilding the room."
+            },
+            {
+                keywords: ['service', 'services', 'offer', 'solutions', 'product'],
+                response: "Our services include: 1) Autonomous Pod Fleet Management, 2) Targeted Rack Density Cooling, 3) Smart Infrastructure & V2X Connectivity, and 4) Custom City & Enterprise Mobility Architecture."
+            },
+            {
+                keywords: ['phone', 'contact', 'call', 'number', 'email', 'address'],
+                response: "You can reach us at:<br>• <strong>Phone:</strong> +44 (0) 20 7946 0912<br>• <strong>Email:</strong> info@podlogic.tech<br>• <strong>LinkedIn:</strong> linkedin.com/company/podlogic"
+            },
+            {
+                keywords: ['cooling', 'rack', 'density', 'thermal'],
+                response: "PodLogic optimizes cooling across all rack densities. We cool each individual rack at the capacity it needs without rebuilding the entire room."
+            },
+            {
+                keywords: ['social', 'facebook', 'instagram', 'twitter', 'x', 'linkedin'],
+                response: "PodLogic actively connects on LinkedIn! You can follow us exclusively on LinkedIn at linkedin.com/company/podlogic."
+            },
+            {
+                keywords: ['location', 'where', 'headquarters', 'london'],
+                response: "Our headquarters are located at 30 St Mary Axe, London EC3A 8EP, United Kingdom."
+            }
+        ];
 
-    const faqDatabase = [
-      {
-        keywords: ['what is', 'about podlogic', 'company', 'who'],
-        answer: 'PodLogic is a high-tech spatial software platform that controls, routes, and optimizes autonomous pod fleets for urban passenger transit and last-mile freight logistics.'
-      },
-      {
-        keywords: ['service', 'services', 'offer', 'solution'],
-        answer: 'We offer 4 core services: 1) Pod Fleet Orchestration SaaS, 2) Smart City Hub Integration, 3) Micro-Freight Delivery Systems, and 4) Spatial Analytics Digital Twin software.'
-      },
-      {
-        keywords: ['contact', 'phone', 'email', 'number', 'call', 'support', 'sales'],
-        answer: 'You can reach PodLogic Ops via phone at +44 (0) 20 7946 0912 or email at info@podlogic.io. You can also visit our Contact page to send a direct message!'
-      },
-      {
-        keywords: ['headquarters', 'location', 'where', 'address', 'office'],
-        answer: 'Our global headquarters is located at 100 Bishopsgate, London EC2N 4AG, United Kingdom, with regional support hubs active in Europe and North America.'
-      },
-      {
-        keywords: ['routing', 'ai', 'algorithm', 'work', 'technology'],
-        answer: 'PodLogic uses dynamic graph neural networks (GNN) and V2X edge compute to calculate instant micro-routes with sub-2ms latency, preventing grid traffic completely.'
-      }
-    ];
+        function addMessage(sender, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'user' ? 'flex justify-end' : 'flex items-start space-x-2';
 
-    function sendFAQ(questionText) {
-      appendChatMessage(questionText, 'user');
-      processBotResponse(questionText);
-    }
+            if (sender === 'user') {
+                msgDiv.innerHTML = `
+                    <div class="bg-cyan-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] text-xs">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                msgDiv.innerHTML = `
+                    <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-[10px] shrink-0 mt-1">
+                        <i class="fa-solid fa-bot"></i>
+                    </div>
+                    <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none max-w-[85%] border border-slate-700 text-xs">
+                        ${text}
+                    </div>
+                `;
+            }
 
-    function handleChatSubmit(e) {
-      e.preventDefault();
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
-      if (!text) return;
-      
-      appendChatMessage(text, 'user');
-      input.value = '';
-      processBotResponse(text);
-    }
-
-    function appendChatMessage(text, sender) {
-      const chatMessages = document.getElementById('chat-messages');
-      const messageDiv = document.createElement('div');
-      
-      if (sender === 'user') {
-        messageDiv.className = 'flex items-start justify-end gap-2';
-        messageDiv.innerHTML = `
-          <div class="bg-cyan-600/30 border border-cyan-500/40 text-cyan-100 p-2.5 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed">
-            ${text}
-          </div>
-        `;
-      } else {
-        messageDiv.className = 'flex items-start gap-2.5';
-        messageDiv.innerHTML = `
-          <div class="w-6 h-6 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5 text-xs">
-            <i class="fa-solid fa-robot"></i>
-          </div>
-          <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed">
-            ${text}
-          </div>
-        `;
-      }
-
-      chatMessages.appendChild(messageDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function processBotResponse(userQuery) {
-      const lowerQuery = userQuery.toLowerCase();
-      let matchedAnswer = 'Thank you for your question. For detailed specifications, please contact our team directly at +44 (0) 20 7946 0912 or info@podlogic.io.';
-
-      for (const item of faqDatabase) {
-        if (item.keywords.some(kw => lowerQuery.includes(kw))) {
-          matchedAnswer = item.answer;
-          break;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-      }
 
-      // Simulate typing latency
-      setTimeout(() => {
-        appendChatMessage(matchedAnswer, 'bot');
-      }, 500);
-    }
-  </script>
+        function processBotQuery(query) {
+            addMessage('user', query);
+            const lowerQuery = query.toLowerCase();
+
+            let foundResponse = "I'm sorry, I didn't quite understand that. You can ask about our 'Services', 'Rack Cooling', or 'Phone/Email contact details'.";
+
+            for (const item of faqKnowledge) {
+                if (item.keywords.some(kw => lowerQuery.includes(kw))) {
+                    foundResponse = item.response;
+                    break;
+                }
+            }
+
+            setTimeout(() => {
+                addMessage('bot', foundResponse);
+            }, 500);
+        }
+
+        function askBot(questionText) {
+            processBotQuery(questionText);
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (text !== "") {
+                processBotQuery(text);
+                chatInput.value = "";
+            }
+        });
+    </script>
 </body>
 </html>
