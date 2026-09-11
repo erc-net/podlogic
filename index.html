@@ -14,12 +14,11 @@
           colors: {
             brand: {
               cyan: '#0284c7',
-              lightCyan: '#00f0ff',
+              sky: '#0ea5e9',
               blue: '#2563eb',
               purple: '#7c3aed',
               darkText: '#0f172a',
               bodyText: '#334155',
-              cardBg: '#ffffff',
             }
           }
         }
@@ -34,35 +33,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
+    /* CLEAR & VISIBLE LIGHT OFFICE BACKGROUND OVERLAY */
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f8fafc;
-      color: #334155;
-      /* LIGHT OFFICE BACKGROUND OVERLAY */
-      background-image: linear-gradient(to bottom, rgba(248, 250, 252, 0.92), rgba(241, 245, 249, 0.96)), 
-                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80');
+      color: #1e293b;
+      background-color: #e2e8f0;
+      background-image: 
+        linear-gradient(to bottom, rgba(248, 250, 252, 0.78), rgba(226, 232, 240, 0.85)), 
+        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2200&q=80');
       background-attachment: fixed;
       background-size: cover;
       background-position: center;
     }
     
-    .light-glass-card {
+    /* FROSTED GLASS CARDS WITH OFFICE VISIBILITY */
+    .glass-card-light {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    }
+    
+    .glass-card-light:hover {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(2, 132, 199, 0.4);
+      box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.15);
+    }
+
+    .glass-header {
       background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
-    }
-    
-    .light-glass-card:hover {
-      border-color: rgba(2, 132, 199, 0.4);
-      box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.12);
-    }
-    
-    .light-nav {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     }
 
     .chat-scrollbar::-webkit-scrollbar {
@@ -77,7 +80,7 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
 
   <!-- TOP UTILITY BAR -->
-  <div class="bg-slate-900 text-xs py-2.5 px-4 sm:px-8 text-slate-300 flex justify-between items-center z-50 shadow-sm">
+  <div class="bg-slate-900 text-xs py-2.5 px-4 sm:px-8 text-slate-300 flex justify-between items-center z-50 shadow-md">
     <div class="flex items-center gap-4 sm:gap-6">
       <a href="tel:+442079460912" class="hover:text-cyan-400 transition flex items-center gap-2 font-medium">
         <i class="fa-solid fa-phone text-cyan-400"></i> +44 (0) 20 7946 0912
@@ -96,14 +99,14 @@
   </div>
 
   <!-- NAVIGATION HEADER -->
-  <header class="sticky top-0 z-40 light-nav border-b border-slate-200/80 shadow-sm">
+  <header class="sticky top-0 z-40 glass-header shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- LOGO -->
       <a href="#" onclick="switchPage('home')" class="flex items-center gap-3 group">
-        <div class="relative w-11 h-11 flex items-center justify-center bg-gradient-to-tr from-purple-600 via-blue-600 to-cyan-500 rounded-xl p-[2px] shadow-md group-hover:shadow-cyan-500/30 transition">
+        <div class="relative w-11 h-11 flex items-center justify-center bg-gradient-to-tr from-purple-600 via-blue-600 to-sky-500 rounded-xl p-[2px] shadow-md group-hover:shadow-sky-500/30 transition">
           <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center relative overflow-hidden">
-            <svg class="w-7 h-7 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="w-7 h-7 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -117,8 +120,8 @@
       </a>
 
       <!-- DESKTOP NAVIGATION -->
-      <nav class="hidden md:flex items-center gap-1 bg-slate-100 p-1.5 rounded-full border border-slate-200">
-        <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition text-sky-700 bg-white shadow-sm">Home</button>
+      <nav class="hidden md:flex items-center gap-1 bg-white/80 p-1.5 rounded-full border border-slate-200/90 shadow-sm">
+        <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition text-sky-700 bg-white shadow">Home</button>
         <button onclick="switchPage('services')" id="nav-services" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition">Services</button>
         <button onclick="switchPage('about')" id="nav-about" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition">About Us</button>
         <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-slate-900 transition">Contact</button>
@@ -138,7 +141,7 @@
     </div>
 
     <!-- MOBILE NAVIGATION DRAWER -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 shadow-lg backdrop-blur-md">
       <button onclick="switchPage('home')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">Home</button>
       <button onclick="switchPage('services')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">Services</button>
       <button onclick="switchPage('about')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">About Us</button>
@@ -162,7 +165,7 @@
           <div class="grid lg:grid-cols-12 gap-12 items-center">
             
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-sky-300 text-sky-800 text-xs font-bold uppercase tracking-wider shadow-sm backdrop-blur-md">
                 <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span> Bulawayo BPO & Operations Hub
               </div>
 
@@ -173,7 +176,7 @@
                 </span>
               </h1>
 
-              <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              <p class="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
                 Your front office cannot perform if the back office is overloaded. PodLogic supports documentation, CRM updates, record management, order processing, tenant and broader Real Estate management, claims admin, and daily operational tasks from Bulawayo so your internal team can focus on customers, growth, and decision-making.
               </p>
 
@@ -181,41 +184,41 @@
                 <button onclick="switchPage('contact')" class="px-8 py-4 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-sky-500/25 transition transform hover:-translate-y-0.5">
                   Schedule Discovery Call <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
-                <button onclick="switchPage('services')" class="px-8 py-4 rounded-xl bg-white border border-slate-300 hover:border-slate-400 text-slate-800 font-semibold text-sm transition shadow-sm">
+                <button onclick="switchPage('services')" class="px-8 py-4 rounded-xl bg-white/90 hover:bg-white border border-slate-300 text-slate-800 font-semibold text-sm transition shadow-sm backdrop-blur-md">
                   Explore Solutions
                 </button>
               </div>
 
               <!-- BULAWAYO / ADVANTAGE STATS -->
-              <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200">
+              <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-300/80">
                 <div>
-                  <div class="text-xl sm:text-2xl font-extrabold text-sky-600">UK / EU / US</div>
-                  <div class="text-[11px] text-slate-500 uppercase font-semibold tracking-wider mt-1">Aligned Time Zones</div>
+                  <div class="text-xl sm:text-2xl font-extrabold text-sky-700">UK / EU / US</div>
+                  <div class="text-[11px] text-slate-600 uppercase font-bold tracking-wider mt-1">Aligned Time Zones</div>
                 </div>
                 <div>
                   <div class="text-xl sm:text-2xl font-extrabold text-slate-900">Top-Tier</div>
-                  <div class="text-[11px] text-slate-500 uppercase font-semibold tracking-wider mt-1">Graduate Talent</div>
+                  <div class="text-[11px] text-slate-600 uppercase font-bold tracking-wider mt-1">Graduate Talent</div>
                 </div>
                 <div>
-                  <div class="text-xl sm:text-2xl font-extrabold text-purple-600">2-4 Weeks</div>
-                  <div class="text-[11px] text-slate-500 uppercase font-semibold tracking-wider mt-1">Structured Onboarding</div>
+                  <div class="text-xl sm:text-2xl font-extrabold text-purple-700">2-4 Weeks</div>
+                  <div class="text-[11px] text-slate-600 uppercase font-bold tracking-wider mt-1">Structured Onboarding</div>
                 </div>
               </div>
             </div>
 
             <!-- DASHBOARD VISUAL CARD -->
             <div class="lg:col-span-5 relative">
-              <div class="light-glass-card rounded-2xl p-6 space-y-4">
+              <div class="glass-card-light rounded-2xl p-6 space-y-4">
                 <div class="flex justify-between items-center border-b border-slate-200 pb-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                    <span class="text-xs font-mono font-bold text-emerald-600">BULAWAYO HUB: ACTIVE</span>
+                    <span class="text-xs font-mono font-bold text-emerald-700">BULAWAYO HUB: ACTIVE</span>
                   </div>
-                  <span class="text-xs text-slate-500 font-mono font-medium">24/7 SUPPORT MODEL</span>
+                  <span class="text-xs text-slate-500 font-mono font-bold">24/7 SUPPORT MODEL</span>
                 </div>
 
                 <div class="space-y-3">
-                  <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
+                  <div class="bg-white/90 p-3.5 rounded-xl border border-slate-200/90 flex items-center justify-between shadow-sm">
                     <div class="flex items-center gap-3">
                       <div class="w-9 h-9 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 font-bold">
                         <i class="fa-solid fa-file-invoice"></i>
@@ -225,10 +228,10 @@
                         <div class="text-[11px] text-slate-500">Record management & data entry</div>
                       </div>
                     </div>
-                    <span class="text-[10px] font-mono font-bold text-sky-700 bg-sky-50 px-2 py-1 rounded border border-sky-200">VERIFIED</span>
+                    <span class="text-[10px] font-mono font-bold text-sky-800 bg-sky-100 px-2 py-1 rounded border border-sky-200">VERIFIED</span>
                   </div>
 
-                  <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
+                  <div class="bg-white/90 p-3.5 rounded-xl border border-slate-200/90 flex items-center justify-between shadow-sm">
                     <div class="flex items-center gap-3">
                       <div class="w-9 h-9 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 font-bold">
                         <i class="fa-solid fa-building-user"></i>
@@ -238,10 +241,10 @@
                         <div class="text-[11px] text-slate-500">Broader portfolio management</div>
                       </div>
                     </div>
-                    <span class="text-[10px] font-mono font-bold text-purple-700 bg-purple-50 px-2 py-1 rounded border border-purple-200">STREAMLINED</span>
+                    <span class="text-[10px] font-mono font-bold text-purple-800 bg-purple-100 px-2 py-1 rounded border border-purple-200">STREAMLINED</span>
                   </div>
 
-                  <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
+                  <div class="bg-white/90 p-3.5 rounded-xl border border-slate-200/90 flex items-center justify-between shadow-sm">
                     <div class="flex items-center gap-3">
                       <div class="w-9 h-9 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 font-bold">
                         <i class="fa-solid fa-clipboard-check"></i>
@@ -251,11 +254,11 @@
                         <div class="text-[11px] text-slate-500">Accurate daily workflow execution</div>
                       </div>
                     </div>
-                    <span class="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200">24/7 SLA</span>
+                    <span class="text-[10px] font-mono font-bold text-emerald-800 bg-emerald-100 px-2 py-1 rounded border border-emerald-200">24/7 SLA</span>
                   </div>
                 </div>
 
-                <div class="bg-slate-900 p-3.5 rounded-xl text-xs text-slate-300 flex justify-between items-center">
+                <div class="bg-slate-900 p-3.5 rounded-xl text-xs text-slate-300 flex justify-between items-center shadow-md">
                   <span>Enquiries: Mon - Fri</span>
                   <a href="mailto:hub@podlogic.co.uk" class="text-sky-400 font-bold hover:underline">hub@podlogic.co.uk</a>
                 </div>
@@ -267,16 +270,16 @@
       </div>
 
       <!-- COMMERCIAL ADVANTAGE SECTION -->
-      <div class="py-16 bg-white/80 border-t border-b border-slate-200/80">
+      <div class="py-16 bg-white/75 border-t border-b border-slate-300/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center max-w-3xl mx-auto mb-12">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-sky-600 mb-2 font-mono">Commercial Advantage</h2>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-sky-700 mb-2 font-mono">Commercial Advantage</h2>
             <p class="text-2xl sm:text-4xl font-extrabold text-slate-900">Optimize Corporate Operations & Back Office</p>
             <p class="text-slate-600 text-sm mt-3 leading-relaxed">Discover how PodLogic enhances your enterprise efficiency with professional back-office solutions. The time zone lines up, top tier graduates, the English is the right fit, and the cost of running a Bulawayo versus a UK-based team is a genuine commercial advantage.</p>
           </div>
 
           <div class="grid md:grid-cols-3 gap-8">
-            <div class="light-glass-card p-8 rounded-2xl transition hover:-translate-y-1">
+            <div class="glass-card-light p-8 rounded-2xl transition hover:-translate-y-1">
               <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-6 font-bold border border-sky-200">
                 <i class="fa-solid fa-sitemap"></i>
               </div>
@@ -284,7 +287,7 @@
               <p class="text-slate-600 text-sm leading-relaxed">Streamline daily operations and internal processes, ensuring your business environment runs smoothly and efficiently every day.</p>
             </div>
 
-            <div class="light-glass-card p-8 rounded-2xl transition hover:-translate-y-1">
+            <div class="glass-card-light p-8 rounded-2xl transition hover:-translate-y-1">
               <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6 font-bold border border-purple-200">
                 <i class="fa-solid fa-chart-line"></i>
               </div>
@@ -292,7 +295,7 @@
               <p class="text-slate-600 text-sm leading-relaxed">Leverage graduate-level employees integrated into your operational frameworks, designed specifically to elevate productivity and reduce administrative friction.</p>
             </div>
 
-            <div class="light-glass-card p-8 rounded-2xl transition hover:-translate-y-1">
+            <div class="glass-card-light p-8 rounded-2xl transition hover:-translate-y-1">
               <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6 font-bold border border-blue-200">
                 <i class="fa-solid fa-cubes"></i>
               </div>
@@ -304,51 +307,51 @@
       </div>
 
       <!-- 6-STAGE ONBOARDING PROCESS -->
-      <div class="py-20 border-t border-slate-200">
+      <div class="py-20 border-t border-slate-300/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div class="max-w-3xl mb-12">
-            <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">Seamless Integration</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-sky-700 font-mono">Seamless Integration</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">How We Get You Live</h2>
-            <p class="text-slate-600 mt-3 text-sm leading-relaxed">
+            <p class="text-slate-700 mt-3 text-sm leading-relaxed">
               Outsourcing fails at the handover far more often than it fails in delivery. This is the six-stage process PodLogic runs before a new operation goes live, ensuring zero friction and complete clarity. Typical onboarding takes <strong>two to four weeks</strong>, depending on process complexity.
             </p>
           </div>
 
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-sky-500">
-              <div class="text-xs font-mono text-sky-600 mb-2 font-bold">STAGE 01</div>
+            <div class="glass-card-light p-6 rounded-2xl border-l-4 border-l-sky-500">
+              <div class="text-xs font-mono text-sky-700 mb-2 font-bold">STAGE 01</div>
               <h4 class="text-lg font-bold text-slate-900 mb-2">Discovery</h4>
               <p class="text-slate-600 text-xs leading-relaxed">Your operation, volumes, systems, and service expectations fully documented.</p>
             </div>
 
-            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-blue-600">
-              <div class="text-xs font-mono text-blue-600 mb-2 font-bold">STAGE 02</div>
+            <div class="glass-card-light p-6 rounded-2xl border-l-4 border-l-blue-600">
+              <div class="text-xs font-mono text-blue-700 mb-2 font-bold">STAGE 02</div>
               <h4 class="text-lg font-bold text-slate-900 mb-2">Process Mapping</h4>
               <p class="text-slate-600 text-xs leading-relaxed">A written process document that both sides review and agree is 100% correct.</p>
             </div>
 
-            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-purple-600">
-              <div class="text-xs font-mono text-purple-600 mb-2 font-bold">STAGE 03</div>
+            <div class="glass-card-light p-6 rounded-2xl border-l-4 border-l-purple-600">
+              <div class="text-xs font-mono text-purple-700 mb-2 font-bold">STAGE 03</div>
               <h4 class="text-lg font-bold text-slate-900 mb-2">Agent Training</h4>
               <p class="text-slate-600 text-xs leading-relaxed">A dedicated team trained to master your product and quality standards before going live.</p>
             </div>
 
-            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-amber-500">
-              <div class="text-xs font-mono text-amber-600 mb-2 font-bold">STAGE 04</div>
+            <div class="glass-card-light p-6 rounded-2xl border-l-4 border-l-amber-500">
+              <div class="text-xs font-mono text-amber-700 mb-2 font-bold">STAGE 04</div>
               <h4 class="text-lg font-bold text-slate-900 mb-2">Pilot Phase</h4>
               <p class="text-slate-600 text-xs leading-relaxed">A tested process, specifically created so problems surface while volume is still low.</p>
             </div>
 
-            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-emerald-600">
-              <div class="text-xs font-mono text-emerald-600 mb-2 font-bold">STAGE 05</div>
+            <div class="glass-card-light p-6 rounded-2xl border-l-4 border-l-emerald-600">
+              <div class="text-xs font-mono text-emerald-700 mb-2 font-bold">STAGE 05</div>
               <h4 class="text-lg font-bold text-slate-900 mb-2">Quality Monitoring</h4>
               <p class="text-slate-600 text-xs leading-relaxed">Consistent operational output, actively verified and audited rather than assumed.</p>
             </div>
 
-            <div class="light-glass-card p-6 rounded-2xl border-l-4 border-l-pink-600">
-              <div class="text-xs font-mono text-pink-600 mb-2 font-bold">STAGE 06</div>
+            <div class="glass-card-light p-6 rounded-2xl border-l-4 border-l-pink-600">
+              <div class="text-xs font-mono text-pink-700 mb-2 font-bold">STAGE 06</div>
               <h4 class="text-lg font-bold text-slate-900 mb-2">Reporting & Optimisation</h4>
               <p class="text-slate-600 text-xs leading-relaxed">Full visibility of your outsourced operation and a continuous route to improving it.</p>
             </div>
@@ -365,7 +368,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">BPO & Operations Capabilities</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-sky-700 font-mono">BPO & Operations Capabilities</span>
           <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">PodLogic Core Services</h1>
           <p class="text-slate-600 mt-4 text-base">We support high-volume corporate workflows from Bulawayo so your internal team can focus on customers, growth, and decision-making.</p>
         </div>
@@ -373,83 +376,83 @@
         <div class="grid md:grid-cols-2 gap-8">
           
           <!-- Service 1 -->
-          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-sky-500">
+          <div class="glass-card-light p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-sky-500">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-sky-600 font-mono text-sm font-bold">SERVICE / 01</span>
+                <span class="text-sky-700 font-mono text-sm font-bold">SERVICE / 01</span>
                 <i class="fa-solid fa-folder-open text-2xl text-sky-600"></i>
               </div>
               <h3 class="text-2xl font-bold text-slate-900 mb-3">Back-Office Administration Support</h3>
               <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Complete management of heavy administrative workloads. From documentation and records management to daily routine operational tasks.
               </p>
-              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-semibold">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-600"></i> Accurate documentation and record updates</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-600"></i> CRM maintenance and database cleansing</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-600"></i> Daily routine operational task execution</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-sky-600 font-bold text-sm hover:underline self-start">Inquire about Admin Support &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-sky-700 font-bold text-sm hover:underline self-start">Inquire about Admin Support &rarr;</button>
           </div>
 
           <!-- Service 2 -->
-          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-purple-600">
+          <div class="glass-card-light p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-purple-600">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-purple-600 font-mono text-sm font-bold">SERVICE / 02</span>
+                <span class="text-purple-700 font-mono text-sm font-bold">SERVICE / 02</span>
                 <i class="fa-solid fa-building text-2xl text-purple-600"></i>
               </div>
               <h3 class="text-2xl font-bold text-slate-900 mb-3">Tenant & Real Estate Management Support</h3>
               <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Tailored administration for real estate agencies, property managers, and commercial landlords across the UK, EU, and US.
               </p>
-              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-semibold">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600"></i> Tenant intake, onboarding, and inquiry administration</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600"></i> Lease record updates and compliance logging</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600"></i> Maintenance ticket dispatch and tracking</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-purple-600 font-bold text-sm hover:underline self-start">Inquire about Real Estate Support &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-purple-700 font-bold text-sm hover:underline self-start">Inquire about Real Estate Support &rarr;</button>
           </div>
 
           <!-- Service 3 -->
-          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-blue-600">
+          <div class="glass-card-light p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-blue-600">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-blue-600 font-mono text-sm font-bold">SERVICE / 03</span>
+                <span class="text-blue-700 font-mono text-sm font-bold">SERVICE / 03</span>
                 <i class="fa-solid fa-cart-flatbed text-2xl text-blue-600"></i>
               </div>
               <h3 class="text-2xl font-bold text-slate-900 mb-3">Order Processing & Claims Admin</h3>
               <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Rapid and accurate processing of commercial orders, claims documentation, and transactional workflows.
               </p>
-              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-semibold">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Order verification, processing, and system entry</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Insurance and service claims administration</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-600"></i> Exception handling and customer log tracking</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-blue-600 font-bold text-sm hover:underline self-start">Inquire about Claims & Orders &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-blue-700 font-bold text-sm hover:underline self-start">Inquire about Claims & Orders &rarr;</button>
           </div>
 
           <!-- Service 4 -->
-          <div class="light-glass-card p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-emerald-600">
+          <div class="glass-card-light p-8 rounded-2xl flex flex-col justify-between border-l-4 border-l-emerald-600">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-emerald-600 font-mono text-sm font-bold">SERVICE / 04</span>
+                <span class="text-emerald-700 font-mono text-sm font-bold">SERVICE / 04</span>
                 <i class="fa-solid fa-gears text-2xl text-emerald-600"></i>
               </div>
               <h3 class="text-2xl font-bold text-slate-900 mb-3">Process Automation & Operations Consulting</h3>
               <p class="text-slate-600 text-sm leading-relaxed mb-6">
                 Modernize corporate workflows with intelligent back-office automation tools and expert operational guidance.
               </p>
-              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-medium">
+              <ul class="space-y-2 text-xs text-slate-700 mb-6 font-semibold">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Intelligent workflow and process mapping</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Graduate-level employee operational integration</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Data management and decision-support analytics</li>
               </ul>
             </div>
-            <button onclick="switchPage('contact')" class="text-emerald-600 font-bold text-sm hover:underline self-start">Inquire about Operations Consulting &rarr;</button>
+            <button onclick="switchPage('contact')" class="text-emerald-700 font-bold text-sm hover:underline self-start">Inquire about Operations Consulting &rarr;</button>
           </div>
 
         </div>
@@ -462,12 +465,12 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="max-w-3xl mb-16">
-          <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">About PodLogic</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-sky-700 font-mono">About PodLogic</span>
           <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">Our Values & Mission</h1>
           <p class="text-sky-700 text-xl font-bold mt-3 italic">
             "Service defines us; empowers you."
           </p>
-          <p class="text-slate-600 mt-4 text-base leading-relaxed">
+          <p class="text-slate-700 mt-4 text-base leading-relaxed">
             PodLogic was built on the principle that front-office innovation requires uncompromised back-office reliability. Our mission is to empower businesses in the UK, EU & US by providing exceptional BPO solutions that improve efficiency, reduce operational cost, and support the delivery of an outstanding customer experience.
           </p>
         </div>
@@ -487,7 +490,7 @@
             </div>
           </div>
 
-          <div class="light-glass-card p-8 rounded-2xl border border-sky-200 space-y-6">
+          <div class="glass-card-light p-8 rounded-2xl border border-sky-200 space-y-6">
             <h3 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">Why Enterprises Choose PodLogic</h3>
             
             <div class="flex gap-4">
@@ -524,7 +527,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs font-bold uppercase tracking-widest text-sky-600 font-mono">Schedule Discovery Call</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-sky-700 font-mono">Schedule Discovery Call</span>
           <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">Schedule Your Next Appointment Hassle-Free</h1>
           <p class="text-slate-600 mt-4 text-sm">Our team is available to discuss your outsourcing requirements, answer questions about our services, and help you understand how we can support your business.</p>
         </div>
@@ -533,7 +536,7 @@
           
           <!-- CONTACT DETAILS CARD -->
           <div class="lg:col-span-5 space-y-6">
-            <div class="light-glass-card p-8 rounded-2xl border border-slate-200 space-y-8">
+            <div class="glass-card-light p-8 rounded-2xl border border-slate-200 space-y-8">
               <h3 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-4">Direct Communication</h3>
               
               <!-- PHONE -->
@@ -588,7 +591,7 @@
 
           <!-- FULLY FUNCTIONAL CONTACT FORM -->
           <div class="lg:col-span-7">
-            <div class="light-glass-card p-8 rounded-2xl border border-slate-200">
+            <div class="glass-card-light p-8 rounded-2xl border border-slate-200">
               <h3 class="text-xl font-bold text-slate-900 mb-6">Book a Discovery Call</h3>
               
               <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
@@ -799,13 +802,13 @@
 
       const navBtns = document.querySelectorAll('.nav-btn');
       navBtns.forEach(btn => {
-        btn.classList.remove('text-sky-700', 'bg-white', 'shadow-sm');
+        btn.classList.remove('text-sky-700', 'bg-white', 'shadow');
         btn.classList.add('text-slate-600');
       });
 
       const activeBtn = document.getElementById(`nav-${pageId}`);
       if (activeBtn) {
-        activeBtn.classList.add('text-sky-700', 'bg-white', 'shadow-sm');
+        activeBtn.classList.add('text-sky-700', 'bg-white', 'shadow');
         activeBtn.classList.remove('text-slate-600');
       }
 
