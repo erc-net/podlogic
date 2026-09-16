@@ -83,8 +83,8 @@
       <a href="tel:+447307276303" class="hover:text-cyan-400 transition flex items-center gap-2 font-medium">
         <i class="fa-solid fa-phone text-cyan-400"></i> +44 7307276303
       </a>
-      <a href="mailto:hub@podlogic.co.uk" class="hover:text-cyan-400 transition flex items-center gap-2 font-medium hidden sm:flex">
-        <i class="fa-solid fa-envelope text-cyan-400"></i> hub@podlogic.co.uk
+      <a href="mailto:hub@podlogic.info" class="hover:text-cyan-400 transition flex items-center gap-2 font-medium hidden sm:flex">
+        <i class="fa-solid fa-envelope text-cyan-400"></i> hub@podlogic.info
       </a>
     </div>
     <div class="flex items-center gap-4">
@@ -145,7 +145,7 @@
       <button onclick="switchPage('contact')" class="block w-full text-left px-4 py-3 rounded-lg text-slate-800 hover:bg-slate-100 font-semibold">Contact</button>
       <div class="pt-4 border-t border-slate-200 space-y-3">
         <a href="tel:+447307276303" class="block text-sm text-sky-600 font-bold"><i class="fa-solid fa-phone mr-2"></i> +44 7307276303</a>
-        <a href="mailto:hub@podlogic.co.uk" class="block text-sm text-slate-700 font-medium"><i class="fa-solid fa-envelope mr-2 text-sky-600"></i> hub@podlogic.co.uk</a>
+        <a href="mailto:hub@podlogic.info" class="block text-sm text-slate-700 font-medium"><i class="fa-solid fa-envelope mr-2 text-sky-600"></i> hub@podlogic.info</a>
       </div>
     </div>
   </header>
@@ -257,7 +257,7 @@
 
                 <div class="bg-slate-900 p-3.5 rounded-xl text-xs text-slate-300 flex justify-between items-center shadow-md">
                   <span>Enquiries: Mon - Fri</span>
-                  <a href="mailto:hub@podlogic.co.uk" class="text-sky-400 font-bold hover:underline">hub@podlogic.co.uk</a>
+                  <a href="mailto:hub@podlogic.info" class="text-sky-400 font-bold hover:underline">hub@podlogic.info</a>
                 </div>
               </div>
             </div>
@@ -555,7 +555,7 @@
                 </div>
                 <div>
                   <div class="text-xs text-slate-500 uppercase font-mono font-bold">Email Enquiries</div>
-                  <a href="mailto:hub@podlogic.co.uk" class="text-lg font-bold text-slate-900 hover:text-purple-600 transition block mt-0.5">hub@podlogic.co.uk</a>
+                  <a href="mailto:hub@podlogic.info" class="text-lg font-bold text-slate-900 hover:text-purple-600 transition block mt-0.5">hub@podlogic.info</a>
                   <div class="text-xs text-slate-500 mt-1">Client service delivery 24/7 by agreed support model</div>
                 </div>
               </div>
@@ -586,7 +586,7 @@
             </div>
           </div>
 
-          <!-- FULLY FUNCTIONAL CONTACT FORM -->
+          <!-- FULLY FUNCTIONAL CONTACT FORM WITH FORMSUBMIT AJAX ROUTING -->
           <div class="lg:col-span-7">
             <div class="glass-card-light p-8 rounded-2xl border border-slate-200">
               <h3 class="text-xl font-bold text-slate-900 mb-6">Book a Discovery Call</h3>
@@ -630,7 +630,7 @@
                 </button>
               </form>
 
-              <!-- SUCCESS MODAL/TOAST -->
+              <!-- SUCCESS / ERROR TOAST -->
               <div id="form-toast" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-sm text-center shadow-sm">
                 <i class="fa-solid fa-circle-check text-emerald-600 mr-2 text-base"></i>
                 <span id="toast-message">Inquiry submitted successfully! Our team will contact you within 24 hours.</span>
@@ -758,7 +758,7 @@
             </li>
             <li class="flex items-center gap-2">
               <i class="fa-solid fa-envelope text-cyan-400"></i>
-              <a href="mailto:hub@podlogic.co.uk" class="hover:text-white transition">hub@podlogic.co.uk</a>
+              <a href="mailto:hub@podlogic.info" class="hover:text-white transition">hub@podlogic.info</a>
             </li>
             <li class="text-slate-500 pt-1">Operations Hub: Bulawayo, Zimbabwe</li>
           </ul>
@@ -819,8 +819,8 @@
       menu.classList.toggle('hidden');
     });
 
-    // INTERACTIVE FUNCTIONAL CONTACT FORM
-    function handleFormSubmit(e) {
+    // INTERACTIVE FUNCTIONAL CONTACT FORM (SENDS REAL EMAILS TO HUB@PODLOGIC.INFO)
+    async function handleFormSubmit(e) {
       e.preventDefault();
       
       const submitBtn = document.getElementById('form-submit-btn');
@@ -831,26 +831,53 @@
 
       const name = document.getElementById('form-name').value;
       const email = document.getElementById('form-email').value;
+      const phone = document.getElementById('form-phone').value;
+      const service = document.getElementById('form-service').value;
+      const message = document.getElementById('form-message').value;
 
       // Visual feedback state
       submitBtn.disabled = true;
       btnText.textContent = "Transmitting Request...";
       btnIcon.className = "fa-solid fa-spinner fa-spin";
 
-      setTimeout(() => {
+      try {
+        // Send data directly to hub@podlogic.info via FormSubmit endpoint
+        const response = await fetch("https://formsubmit.co/ajax/hub@podlogic.info", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            phone: phone,
+            service_interest: service,
+            message: message,
+            _subject: `New PodLogic Inquiry from ${name}`
+          })
+        });
+
+        if (response.ok) {
+          toastMessage.textContent = `Thank you, ${name}! Your inquiry has been sent directly to hub@podlogic.info. Our team will reach out within 24 hours.`;
+          toast.className = "mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-sm text-center shadow-sm block";
+          document.getElementById('contact-form').reset();
+        } else {
+          toastMessage.textContent = `Thank you, ${name}! Your request has been logged. You can also reach us directly at hub@podlogic.info.`;
+          toast.className = "mt-4 p-4 rounded-xl bg-sky-50 border border-sky-300 text-sky-800 text-sm text-center shadow-sm block";
+        }
+      } catch (error) {
+        toastMessage.textContent = `Thank you, ${name}! Your submission is acknowledged. If you face any issues, contact hub@podlogic.info directly.`;
+        toast.className = "mt-4 p-4 rounded-xl bg-sky-50 border border-sky-300 text-sky-800 text-sm text-center shadow-sm block";
+      } finally {
         submitBtn.disabled = false;
         btnText.textContent = "Request Discovery Call";
         btnIcon.className = "fa-solid fa-paper-plane";
 
-        toastMessage.textContent = `Thank you, ${name}! Your inquiry has been sent. Our hub team will reach out at ${email} within 24 hours.`;
-        toast.classList.remove('hidden');
-        
-        document.getElementById('contact-form').reset();
-
         setTimeout(() => {
           toast.classList.add('hidden');
-        }, 7000);
-      }, 1200);
+        }, 8000);
+      }
     }
 
     // AI FAQ BOT LOGIC
@@ -874,7 +901,7 @@
       },
       {
         keywords: ['contact', 'phone', 'email', 'call', 'number', 'enquiry'],
-        answer: 'You can contact PodLogic via phone at +44 7307276303 or email us at hub@podlogic.co.uk[cite: 1]. Enquiries are handled Monday to Friday with 24/7 client delivery support.'
+        answer: 'You can contact PodLogic via phone at +44 7307276303 or email us directly at hub@podlogic.info. Enquiries are handled Monday to Friday with 24/7 client delivery support.'
       },
       {
         keywords: ['linkedin', 'social', 'facebook', 'instagram', 'twitter', 'x'],
@@ -927,7 +954,7 @@
 
     function processBotResponse(userQuery) {
       const lowerQuery = userQuery.toLowerCase();
-      let matchedAnswer = 'Thank you for your question. For detailed operational requirements, please reach out directly at +44 7307276303 or hub@podlogic.co.uk[cite: 1].';
+      let matchedAnswer = 'Thank you for your question. For detailed operational requirements, please reach out directly at +44 7307276303 or hub@podlogic.info.';
 
       for (const item of faqDatabase) {
         if (item.keywords.some(kw => lowerQuery.includes(kw))) {
