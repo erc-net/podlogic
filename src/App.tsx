@@ -7,7 +7,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import type { PageId } from './types';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const PAGE_IDS: PageId[] = ['home', 'services', 'about', 'contact'];
 
