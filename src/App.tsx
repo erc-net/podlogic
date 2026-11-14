@@ -7,6 +7,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import type { PageId } from './types';
+import { Analytics } from '@vercel/analytics/next';
 
 const PAGE_IDS: PageId[] = ['home', 'services', 'about', 'contact'];
 
@@ -58,6 +59,7 @@ export function App() {
 
       <ChatbotWidget />
       <Footer onNavigate={handleNavigate} />
+      <Analytics />
     </div>
   );
 }
